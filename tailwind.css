@@ -44,7 +44,7 @@
 
 @layer base {
     .btn-primary{
-        @apply font-inter text-sm md:text-md font-semibold inline-block bg-primary-900 hover:bg-black text-center uppercase text-white py-5 px-6 xl:px-10 transition-all duration-500;
+        @apply font-inter text-sm md:text-md font-semibold inline-block bg-primary-900 hover:bg-black text-center uppercase text-white py-4 sm:py-5 px-6 xl:px-10 transition-all duration-500;
     }
     .btn-secondary {
         @apply bg-white text-black hover:bg-primary-900 hover:text-white;
@@ -58,7 +58,7 @@
         @apply text-3xl lg:text-4xl xl:text-6xl leading-3xl lg:leading-4xl xl:leading-6xl font-medium mb-3 tracking-[3px] xl:tracking-[5px]
     }
     h2 {
-        @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 sm:tracking-[5px]
+        @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 tracking-[2px] sm:tracking-[5px]
     }
     h3 {
         @apply text-2xl md:text-3xl leading-2xl md:leading-3xl
@@ -113,6 +113,44 @@
         background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
         opacity: 0.66;
     }
+    .logo-dark{
+        @apply hidden
+    }
+    .main-navigation.stick .logo-light{
+        @apply hidden
+    }
+    .main-navigation.stick .logo-dark{
+        @apply block
+    }
+    .main-navigation.stick .menu li a{
+        @apply text-pink-900
+    }
+    .main-navigation.stick .menu li a::before{
+        @apply bg-pink-900
+    }
+    .main-navigation.stick .user-icon a{
+        @apply text-pink-900
+    }
+    .main-navigation.stick .menu li.menu-btn a:hover{
+        @apply bg-pink-900 text-white
+    }
+
+
+    .header.header-bar.show .header-h{
+        @apply h-3 md:h-9 lg:h-12
+    }
+    .header.show .header-h{
+        @apply h-0
+    }
+    .header.header-bar.show.open .header-h{
+        @apply h-0
+    }
+    .header.show.open .header-h{
+        @apply h-3 md:h-9 lg:h-12
+    }
+    .header-bar .header-bar{
+       @apply hidden
+    }
 
     .hero-section .swiper .swiper-slide h6{
         @apply relative top-8 transition-all duration-200 delay-200 opacity-0
@@ -152,7 +190,7 @@
     .heading p{
         @apply text-lg md:text-xl
     }
-    .footer .footer-colum p{
+    .footer .footer-column p{
         @apply text-md lg:text-lg leading-6
     }
     .footer-menu li a{
@@ -254,6 +292,13 @@
     .sign-up-section{
         background-position:left  bottom -160px;
     }
+    /*.backdrop-blur-lg, .backdrop-blur-sm {
+        -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+        backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+    }
+    .backdrop-blur-lg{
+        filter: blur(16px);
+    }*/
 
     @media (min-width: 768px){ 
         .border-color {
@@ -291,6 +336,18 @@
 
         h5.core-recovery {
             @apply text-1xl leading-1xl
+        }
+    }
+    @media (max-width: 366px){ 
+        h2{
+           @apply text-xl leading-8 
+        }
+        h3{
+           @apply text-lg leading-6 
+        }
+        h5,
+        h4{
+           font-size: 16px !important;
         }
     }
 }

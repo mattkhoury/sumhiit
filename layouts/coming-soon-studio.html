@@ -23,19 +23,26 @@
   <div class="text-md lg:text-lg leading-normal text-white font-normal font-inter antialiased bg-black">
 
     <!-- start-header -->
-    <header class="header fixed top-0 py-3 left-0 w-full z-3" x-data="{ isOpen: false, showBar : false, marginOffset : 0 }">
+    <header class="header fixed top-0 py-3 left-0 w-full z-3" x-data="{ isOpen: false, showBar : true, marginOffset : 0 }">
      <div x-ref=spacer class="absolute h-3 md:h-9 lg:h-12"></div>
-     <div class="h-3 md:h-9 lg:h-12" :style="marginOffset > 0 ? 'height: ' + ($refs.spacer.getBoundingClientRect().height - marginOffset >= 0 ? $refs.spacer.getBoundingClientRect().height - marginOffset : 0) + 'px' : ''"></div>
-     <div class="absolute top-0 right-0 bottom-0 left-0 bg-white/10 -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="m sd:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
-     <div class="absolute top-0 right-0 bottom-0 left-0 backdrop-blur-md -z-20 shadow-lg" :class="isOpen ? 'h-screen w-screen' : ''" x-show="isOpen || showBar" x-cloak class=md:hidden x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
+     <div class="header-h h-3 md:h-9 lg:h-12" :style="marginOffset > 0 ? 'height: ' + ($refs.spacer.getBoundingClientRect().height - marginOffset >= 0 ? $refs.spacer.getBoundingClientRect().height - marginOffset : 0) + 'px' : ''"></div>
+     <div class="header-bar absolute top-0 right-0 bottom-0 left-0 bg-black/50 md:bg-white/10 -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="m sd:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
+     <div class="header-bar absolute top-0 right-0 bottom-0 left-0 backdrop-blur-md -z-20 shadow-lg" :class="isOpen ? 'h-screen w-screen' : ''" x-show="isOpen || showBar" x-cloak class=md:hidden x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <!-- start header main navigation -->
      <div class=main-navigation py-7 @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
       <!-- container -->
-      <div class="container flex items-center justify-between">
-        <!-- Header logo -->
-        <div class="shrink-0 max-w-[150px] lg:max-w-none">
-          <a href="javascript:;"><img src="assets/images/logo.svg" alt="logo"></a>
-        </div>
+      <div class="container">
+        <!-- hade nav -->
+        <nav class="flex items-center justify-between">
+          <!-- Header logo -->
+          <div class="shrink-0 max-w-[150px] lg:max-w-none">
+            <h1 class="m-0">
+              <a href="home.html">
+                <img src="assets/images/logo.svg" alt="logo" class="logo-light">
+                <img src="assets/images/logo-pink.svg" alt="logo" class="logo-dark">
+              </a>
+            </h1>
+          </div>
         <!-- header menu right -->
         <div class="flex items-center justify-end gap-6 xl:gap-10">
           <!-- main menu -->
@@ -71,6 +78,7 @@
          </div>
 
        </div>
+     </nav>
 
      </div>
 
@@ -103,12 +111,23 @@
   </div>
 
       <!-- Start inner banner -->
-      <section class="hero-section min-h-[537px] relative p-0">
+      <section class="hero-section pb-32 pt-72 md:pt-40 lg:pb-40 lg:pt-48 min-h-[537px] relative p-0">
         <div class="inner-bg-overlay absolute top-0 left-0 w-full h-full">
-          <img src="assets/images/coming-soon-studio-banner.jpg" alt="coming soon studio banner" class="hidden md:block w-full h-full object-cover">
-          <img src="assets/images/coming-soon-studio-banner-mobile.jpg" alt="coming soon studio banner" class="block md:hidden w-full h-full object-cover">
           
+          <picture class="w-full h-full">
+              <source srcset="assets/images/coming-soon-studio-banner-mobile.jpg"
+                      media="(orientation: portrait)">
+              <img src="assets/images/coming-soon-studio-banner.jpg" alt="" class="w-full h-full object-cover">
+          </picture>
         </div>
+        <!-- container -->
+          <!-- <div class="container relative z-3">
+            <div class="max-w-[790px]">
+              <h2 class="title text-white mb-5">35 mins.<br> max results.</h2>
+              <p class="des text-white md:text-xl uppercase mb-11">Get in. Get after it. Get on with your life. Get 50 mins of calorie burn in just 35, with our best-in-class group hiit workout.<br>
+                <a href="javascript:;" class="btn-link">LEARN MORE</a></p>
+            </div>
+          </div> -->
       </section>
       <!-- End inner banner -->
 
@@ -117,14 +136,14 @@
         <!-- container -->
         <div class="container relative z-2 -mt-40 md:mt-0">
           <div class="flex flex-wrap md:flex-nowrap -mx-4 ">
-            <!-- colums -->
+            <!-- columns -->
             <div class="w-full md:w-1/2 lg:w-7/12 px-4 py-10 md:py-14 lg:pr-20 relative">
               <div class="absolute -top-4 left-4 bg-pink-900 py-0.5 px-8 uppercase font-semibold text-md">COMING SOON</div>
               <h3 class="md:flex flex-wrap gap-x-5">CROWS NEST <span class="text-dark-500 text-1xl block normal-case tracking-normal">Sydney</span></h3>
               <p class="md:text-xl md:leading-1xl">Forget what you know about high intensity workouts and reimagine what you can accomplish in only 35 minutes time. Supreme calorie burn (up to 800 calories in just one class), camaraderie to keep you going, and instructors ready to push you to the next level are what you can expect at SUMHIIT. It's not a gym, it's not a bootcamp workout—it's a revolution in fitness classes that you won't want to miss.</p>
             </div>
-            <!-- colums -->
-            <div class="w-full md:w-1/2 lg:w-5/12 md:px-4">
+            <!-- columns -->
+            <div class="form-part w-full md:w-1/2 lg:w-5/12 md:px-4">
               <div class="bg-white px-5 md:px-6 lg:px-9 py-8 lg:py-12 -mt-5">
                 <div class="text-center text-black mb-8 md:mb-10">
                   <h4 class="mb-3 text-black normal-case font-inter font-bold tracking-normal">Get early access</h4>
@@ -163,7 +182,7 @@
       <!-- End CROWS NEST section -->
 
       <!-- Start office locater  -->
-      <section class="p-0 office-locater-one olc-layout" data-id="olc_488086" id="olc_488086">
+      <section class="locations-map p-0 office-locater-one olc-layout" data-id="olc_488086" id="olc_488086">
         <div class="olc-container">
             <div class="office-locater-two olc-col-2">
                 <div class="office-locater-one-left office-panel" id="office-panel"></div>
@@ -187,10 +206,14 @@
           </div>
 
           <!-- Ride. Lift. Repeat box -->
-          <div class="relative min-h-[480px] md:min-h-[550px] grid content-end lg:content-center mb-3">
+          <div class="ride-lift relative min-h-[480px] md:min-h-[550px] grid content-end lg:content-center mb-3">
             <div class="absolute top-0 left-0 w-full h-full">
-              <img src="assets/images/repeat-min-img1.jpg" alt="repeat min img1" class=" hidden md:block w-full h-full object-cover">
-              <img src="assets/images/repeat-min-img1-mobile.jpg" alt="repeat min img1" class="block md:hidden w-full h-full object-cover">
+            
+              <picture class="w-full h-full">
+                <source srcset="assets/images/repeat-min-img1-mobile.jpg"
+                        media="(orientation: portrait)">
+                <img src="assets/images/repeat-min-img1.jpg" alt="" class="w-full h-full object-cover  object-left-top">
+            </picture>
             </div>
 
             <div class="p-5 md:p-10 mb-20 lg:mb-0 max-w-[540px] lg:max-w-[400px] relative z-1">
@@ -209,8 +232,12 @@
             </div>
 
             <div class="absolute top-0 left-0 w-full h-full">
-              <img src="assets/images/repeat-min-img2.jpg" alt="repeat min img 2" class=" hidden md:block w-full h-full object-cover">
-              <img src="assets/images/repeat-min-img2-mobile.jpg" alt="repeat min img 2" class="block md:hidden w-full h-full object-cover">
+              
+              <picture class="w-full h-full">
+                <source srcset="assets/images/repeat-min-img2-mobile.jpg"
+                        media="(orientation: portrait)">
+                <img src="assets/images/repeat-min-img2.jpg" alt="" class="w-full h-full object-cover  object-left-top">
+            </picture>
             </div>
 
             <div class="p-5 md:p-10 mb-14 lg:mb-0 max-w-[540px] relative z-1">
@@ -229,8 +256,11 @@
             </div>
 
             <div class="absolute top-0 left-0 w-full h-full">
-              <img src="assets/images/repeat-min-img3.jpg" alt="repeat min img3" class=" hidden md:block w-full h-full object-cover">
-              <img src="assets/images/repeat-min-img3-mobile.jpg" alt="repeat min img3" class="block md:hidden w-full h-full object-cover">
+              <picture class="w-full h-full">
+                <source srcset="assets/images/repeat-min-img3-mobile.jpg"
+                        media="(orientation: portrait)">
+                <img src="assets/images/repeat-min-img3.jpg" alt="" class="w-full h-full object-cover  object-left-top">
+            </picture>
             </div>
 
             <div class="p-5 md:p-10 max-w-[450px] relative z-1">
@@ -252,8 +282,8 @@
       <!-- container -->
       <div class="container">
         <div class="flex flex-wrap md:flex-nowrap -mx-4 gap-5 lg:gap-10">
-          <!-- colums -->
-          <div class="footer-colum w-full md:w-1/2 px-4">
+          <!-- columns -->
+          <div class="footer-column w-full md:w-1/2 px-4">
             <div class="mb-10 md:mb-16 lg:pr-12">
               <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">about us</h6>
               <p>SUMHIIT Fitness workouts include quick-paced, 1-minute intervals with no downtime during transitions, so you get a nonstop workout that supercharges calorie burn, with 50 minutes of cardio and strength results in just 35 minutes.</p>
@@ -265,8 +295,8 @@
               </ul>
             </div>
           </div>
-          <!-- colums -->
-          <div class="footer-colum text-center md:text-left w-full md:w-1/6 px-4 order-3 md:order-2">
+          <!-- columns -->
+          <div class="footer-column text-center md:text-left w-full md:w-1/6 px-4 order-3 md:order-2">
             <div class="mb-10 md:mb-16">
               <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">COMPANY</h6>
 
@@ -285,8 +315,8 @@
               </ul>
             </div>
           </div>
-          <!-- colums -->
-          <div class="footer-colum w-full md:w-2/6 px-4 order-2 md:order-3">
+          <!-- columns -->
+          <div class="footer-column w-full md:w-2/6 px-4 order-2 md:order-3">
             <div class="mb-10 md:mb-16">
               <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">sumhiit APP</h6>
               <p>Join a studio, earn points, and track your class count! View class schedules and book with ease. Track your progress and stay motivated to keep crushing your goals.</p>

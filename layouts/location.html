@@ -276,8 +276,19 @@
     <!-- Start office locater  -->
       <section class="locations-map p-0 office-locater-one olc-layout" data-id="olc_488086" id="olc_488086">
         <div class="olc-container">
+
+          <form class="olc-storelocator-filter" method="post">
+                <div class="olc-location-search">           
+                    <div class="olc-input">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+
+                        <input class="olc-location-search-input text-black"  name="location_search" placeholder="Search Location" autocomplete="off" >                       
+                    </div>
+                </div>
+            </form>
+
             <div class="office-locater-two olc-col-2">
-                <div class="office-locater-one-left office-panel" id="office-panel"></div>
+              <div class="office-locater-one-left office-panel" id="office-panel"></div>
                 <div class="olc-google-map w-full min-h-[400px] md:min-h-[480px]"></div>
             </div>
         </div>
