@@ -1,0 +1,296 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: 'Titling Gothic FB';
+    src: url('../fonts/TitlingGothicFBExtended-Medium.eot');
+    src: url('../fonts/TitlingGothicFBExtended-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/TitlingGothicFBExtended-Medium.woff2') format('woff2'),
+        url('../fonts/TitlingGothicFBExtended-Medium.woff') format('woff'),
+        url('../fonts/TitlingGothicFBExtended-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Titling Gothic FB';
+    src: url('../fonts/TitlingGothicFB-Standard.eot');
+    src: url('../fonts/TitlingGothicFB-Standard.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/TitlingGothicFB-Standard.woff2') format('woff2'),
+        url('../fonts/TitlingGothicFB-Standard.woff') format('woff'),
+        url('../fonts/TitlingGothicFB-Standard.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Titling Gothic FB';
+    src: url('../fonts/TitlingGothicFBExtended-Standard.eot');
+    src: url('../fonts/TitlingGothicFBExtended-Standard.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/TitlingGothicFBExtended-Standard.woff2') format('woff2'),
+        url('../fonts/TitlingGothicFBExtended-Standard.woff') format('woff'),
+        url('../fonts/TitlingGothicFBExtended-Standard.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+@layer base {
+    .btn-primary{
+        @apply font-inter text-sm md:text-md font-semibold inline-block bg-primary-900 hover:bg-black text-center uppercase text-white py-5 px-6 xl:px-10 transition-all duration-500;
+    }
+    .btn-secondary {
+        @apply bg-white text-black hover:bg-primary-900 hover:text-white;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+        @apply font-titling-gothic-fb uppercase font-medium text-white mb-5 md:mb-7
+    }
+    
+    h1 {
+        @apply text-3xl lg:text-4xl xl:text-6xl leading-3xl lg:leading-4xl xl:leading-6xl font-medium mb-3 tracking-[3px] xl:tracking-[5px]
+    }
+    h2 {
+        @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 sm:tracking-[5px]
+    }
+    h3 {
+        @apply text-2xl md:text-3xl leading-2xl md:leading-3xl
+    }
+    h4 {
+        @apply text-1xl md:text-2xl leading-1xl md:leading-2xl
+    }
+    h5 {
+        @apply text-xl md:text-1xl md:leading-1xl
+    }
+    h6 {
+        @apply text-lg
+    }
+    .title {
+       @apply text-2xl md:text-3xl lg:text-4xl xl:text-6xl leading-2xl md:leading-3xl lg:leading-4xl xl:leading-6xl text-white font-medium tracking-[3px] xl:tracking-[5px]
+    }
+
+    .border-color{
+        @apply border-white
+    }
+
+    p{
+        @apply font-inter text-md md:text-lg font-normal mb-4
+    }
+    section {
+        @apply py-10 md:py-20
+    }
+    .btn-link{
+        @apply uppercase font-bold underline hover:no-underline;
+    }
+    .menu li a{
+        @apply py-3 relative block before:h-[5px] before:w-0 before:bg-white before:absolute before:bottom-0 before:left-0 before:transition-all hover:before:w-full
+    }
+    .menu li.menu-btn a{
+        @apply font-inter text-md md:text-sm lg:text-md font-semibold max-w-fit block bg-white before:hidden uppercase text-black py-3 md:py-4 px-5 lg:px-6 xl:px-10 transition-all duration-500 hover:bg-primary-900 hover:text-white;
+    }
+    .hero-section.bg-overlay:before{
+        opacity: 0.5;
+    }
+    .bg-overlay:before{
+        @apply absolute bottom-0 md:bottom-auto md:top-0 left-0 w-full h-[70%] md:w-2/4 md:h-full z-1;
+    }
+    .bg-overlay:before{
+        content: '';
+        background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 100%); 
+    }
+    .inner-bg-overlay:before{
+        @apply absolute top-0 left-0 w-full h-[70%] z-1;
+    }
+    .inner-bg-overlay:before{
+        content: '';
+        background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+        opacity: 0.66;
+    }
+
+    .hero-section .swiper .swiper-slide h6{
+        @apply relative top-8 transition-all duration-200 delay-200 opacity-0
+    }
+
+    .hero-section .swiper .swiper-slide h1{
+        @apply relative top-10 transition-all duration-300 delay-300 opacity-0
+    }
+    .hero-section .swiper .swiper-slide .des{
+        @apply relative top-12 transition-all duration-500 delay-500 opacity-0
+    }
+    .hero-section .swiper .swiper-slide .get-started{
+        @apply relative top-14 transition-all duration-700 delay-700 opacity-0
+    }
+
+    .hero-section .swiper .swiper-slide.swiper-slide-active h6,
+    .hero-section .swiper .swiper-slide.swiper-slide-active h1,
+    .hero-section .swiper .swiper-slide.swiper-slide-active .des,
+    .hero-section .swiper .swiper-slide.swiper-slide-active .get-started{
+        @apply top-0 opacity-100
+    }
+    .swiper-pagination .swiper-pagination-bullet{
+        @apply w-[40px] h-[10px] bg-white rounded-xl
+    }
+
+    .video-section:before{
+        @apply absolute bottom-0 left-0 w-full h-2/4 md:h-[350px] z-1;
+    }
+    .video-section:before{
+        content: '';
+        background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+        transform: matrix(1, 0, 0, -1, 0, 0);
+    }
+    .heading h2{
+        @apply mb-6
+    }
+    .heading p{
+        @apply text-lg md:text-xl
+    }
+    .footer .footer-colum p{
+        @apply text-md lg:text-lg leading-6
+    }
+    .footer-menu li a{
+        @apply hover:text-primary-900;
+    }
+    .social-icon li a{
+        @apply w-[32px] h-[32px] bg-black rounded-full flex items-center justify-center text-white hover:bg-primary-900;
+    }
+
+    .mobile-toggle a{
+        @apply w-[24px] block
+    }
+    .mobile-toggle a span{
+        @apply w-full h-[1px] block my-[5px] bg-white
+    }
+    .form-control{
+        @apply border border-black py-3 px-4 w-full text-black text-sm focus:outline-0;
+    }
+    .form-control::-webkit-input-placeholder { 
+      @apply text-black
+    }
+    .form-control::-moz-placeholder { 
+      @apply text-black
+    }
+    .form-control:-ms-input-placeholder {
+      @apply text-black
+    }
+    .form-control:-moz-placeholder { 
+      @apply text-black
+    }
+    .checkcontainer{
+       @apply pl-8 relative
+    }
+    .checkcontainer input{
+        @apply absolute opacity-0
+    }
+    .checkcontainer .checkmark{
+        @apply absolute top-0 left-0 p-1 w-[20px] h-[20px] border border-primary-900 before:bg-primary-900
+    }
+    .checkcontainer .checkmark:before{
+        @apply w-full h-full bg-primary-900 hidden
+    }
+    .checkcontainer input:checked ~ .checkmark:before{
+        @apply block
+    }
+    .grand-opening-box:before{
+        @apply hidden md:block absolute -top-40 left-0 w-[110%] h-[600px] -z-1
+    }
+    .grand-opening-box:before{
+        content: '';
+        background: linear-gradient(216.58deg, #0824F5 22.47%, rgba(236, 0, 140, 0.7) 39.69%, rgba(0, 0, 0, 0) 68.51%);
+        mix-blend-mode: screen;
+        opacity: 0.7;
+        filter: blur(42px);
+    }
+    .office-locater-one-address{
+        @apply text-black
+    }
+    .form-container form{
+        @apply flex overflow-hidden
+    }
+    .form-container form .form-page{
+        flex: 1 0 100%;
+        transition: transform 0.3s;
+    }
+    .pagination .bar-circle{
+        @apply rounded-full mx-4 w-3 h-3 relative
+    }
+    .pagination .bar-circle.active{
+        @apply bg-black
+    }
+    .pagination .bar-circle:before{
+        @apply w-[20px] h-[1px] bg-dark-400 absolute top-[5px] right-[17px]
+    }
+    .pagination .bar-circle:first-child:before{
+        @apply hidden
+    }
+    .sign-up-form .form-control{
+        @apply bg-transparent border-white text-white
+    }
+    .sign-up-form .form-control::-webkit-input-placeholder { 
+      @apply text-white
+    }
+    .sign-up-form .form-control::-moz-placeholder { 
+      @apply text-white
+    }
+    .sign-up-form .form-control:-ms-input-placeholder {
+      @apply text-white
+    }
+    .sign-up-form .form-control:-moz-placeholder { 
+      @apply text-white
+    }
+    .sign-up-form .checkcontainer .checkmark{
+       @apply border-white
+    }
+   .sign-up-form .checkcontainer input:checked ~ .checkmark{
+        @apply border-primary-900
+    }
+    .sign-up-section{
+        background-position:left  bottom -160px;
+    }
+
+    @media (min-width: 768px){ 
+        .border-color {
+            border-image: linear-gradient(#fff, #fff0) 1;
+        }
+        .bg-overlay:before{
+        content: '';
+            background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 100%); 
+        }
+    }
+
+    @media (max-width: 767px){ 
+        .bg-overlay:before{
+        content: '';
+            background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%); 
+        }
+
+        h5.core-recovery {
+            @apply text-2xl leading-2xl
+        }
+
+        .inner-bg-overlay:after{
+            @apply absolute bottom-0 left-0 w-full h-[30%] z-1;
+        }
+        .inner-bg-overlay:after{
+            content: '';
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+        }
+    }
+    @media (max-width: 481px){ 
+        .bg-overlay:before{
+        content: '';
+            background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%); 
+        }
+
+        h5.core-recovery {
+            @apply text-1xl leading-1xl
+        }
+    }
+}
