@@ -23,7 +23,7 @@
   <div class="text-md lg:text-lg leading-normal text-white font-normal font-inter antialiased bg-black">
 
     <!-- start-header -->
-    <header class="header fixed top-0 py-3 left-0 w-full z-3" x-data="{ isOpen: false, showBar : true, marginOffset : 0 }">
+    <header class="header fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : true, marginOffset : 0 }">
      <div x-ref=spacer class="absolute h-3 md:h-9 lg:h-12"></div>
      <div class="header-h h-3 md:h-9 lg:h-12" :style="marginOffset > 0 ? 'height: ' + ($refs.spacer.getBoundingClientRect().height - marginOffset >= 0 ? $refs.spacer.getBoundingClientRect().height - marginOffset : 0) + 'px' : ''"></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 bg-black/50 md:bg-white/10 -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="m sd:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
@@ -274,7 +274,7 @@
     <!-- End CROWS NEST section -->
 
     <!-- Start office locater  -->
-      <section class="locations-map p-0 office-locater-one olc-layout" data-id="olc_488086" id="olc_488086">
+      <section class="locations-map p-0 office-locater-one olc-layout" data-studio-list="no" data-json="json/opening-soon-studio.json"   data-id="olc_488086" id="olc_488086">
         <div class="olc-container">
             <div class="office-locater-two olc-col-2">
                 <div class="office-locater-one-left office-panel" id="office-panel"></div>
@@ -300,27 +300,27 @@
 
         <!-- STUDIO AMENITIES service -->
         <div class="ride-lift grid md:grid-cols-2 gap-6 md:gap-8">
-          <div class="border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]">
+          <div class="studio-service">
             <img src="assets/images/free-parking-icon.svg" alt="free parking icon" class="max-w-[35px] md:max-w-none">
             <h6 class="m-0 text-sm lg:text-md">free parking</h6>
           </div>
-          <div class="border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]">
+          <div class="studio-service">
             <img src="assets/images/retail-icon.svg" alt="free parking icon" class="max-w-[35px] md:max-w-none">
             <h6 class="m-0 text-sm lg:text-md">retail</h6>
           </div>
-          <div class="border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]">
+          <div class="studio-service">
             <img src="assets/images/hot-showers-icon.svg" alt="free parking icon" class="max-w-[35px] md:max-w-none">
             <h6 class="m-0 text-sm lg:text-md">HOT SHOWERS</h6>
           </div>
-          <div class="border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]">
+          <div class="studio-service">
             <img src="assets/images/complimentary-icon.svg" alt="free parking icon" class="max-w-[35px] md:max-w-none">
             <h6 class="m-0 text-sm lg:text-md">COMPLIMENTARY TOWELS</h6>
           </div>
-          <div class="border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]">
+          <div class="studio-service">
             <img src="assets/images/private-changing-room-icon.svg" alt="free parking icon" class="max-w-[35px] md:max-w-none">
             <h6 class="m-0 text-sm lg:text-md">private changing room</h6>
           </div>
-          <div class="border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]">
+          <div class="studio-service">
             <img src="assets/images/healthy-snacks-icon.svg" alt="free parking icon" class="max-w-[35px] md:max-w-none">
             <h6 class="m-0 text-sm lg:text-md">HEALTHY SNACKS</h6>
           </div>

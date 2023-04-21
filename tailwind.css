@@ -292,13 +292,15 @@
     .sign-up-section{
         background-position:left  bottom -160px;
     }
-    /*.backdrop-blur-lg, .backdrop-blur-sm {
-        -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-        backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+    .studio-service{
+        @apply border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]
     }
-    .backdrop-blur-lg{
-        filter: blur(16px);
-    }*/
+    .search-list {
+        @apply border-b border-dark-200
+    }
+    .olc-location-search-input:focus{
+        outline: outset 1px;
+    }
 
     @media (min-width: 768px){ 
         .border-color {

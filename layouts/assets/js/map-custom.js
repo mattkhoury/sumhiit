@@ -38,7 +38,7 @@
 		jQuery('.olc-result-cnt').remove();
 		if( input_val ){
 			input_val = input_val.toLowerCase();
-			jQuery.getJSON( "json/store.json", function( response ) {
+			jQuery.getJSON( olc_section.attr('data-json'), function( response ) {
 				if( response.length > 0 ){
 					var search_obj = [];
 					jQuery(response).each(function( key, value ){
@@ -68,13 +68,13 @@
 						  search_obj.push( value );
 						}
 					});
-					jQuery('.olc-location-search').after('<div class="olc-result-cnt">'+search_obj.length+' Results</div>');
+					jQuery('.olc-location-search').after('<div class="olc-result-cnt md:absolute rounded-full text-white font-medium ">'+search_obj.length+' Results</div>');
 					olcLoadOffices( search_obj, olc_section, 0, olcSectionID )
 				}
 		 		
 		 	});
 		}else{
-			jQuery.getJSON( "json/store.json", function( response ) {			
+			jQuery.getJSON( olc_section.attr('data-json'), function( response ) {			
 		 		olcLoadOffices( response, olc_section, 0, olcSectionID );
 		 	});
 		}
@@ -413,7 +413,7 @@ function olc_load_offices( olc_lat, olc_long, olc_section, olcSectionID ) {
 	ofcMapObj[olcSectionID].olc_map.setOptions({
 		styles: ofcMapObj[olcSectionID].OlcMapStyle
 	});
-	jQuery.getJSON( "json/store.json", function( response ) {		
+	jQuery.getJSON( olc_section.attr('data-json'), function( response ) {		
  		olcLoadOffices( response, olc_section, 0, olcSectionID );
  	});
 	
@@ -421,6 +421,7 @@ function olc_load_offices( olc_lat, olc_long, olc_section, olcSectionID ) {
 
 /* This function use to reload office */
 function olcLoadOffices( response, olc_section, ajax = 0, olcSectionID ) {
+	var load_css = "<style>.office-locater-one-title{color:#E80088;}.address-one-list p a:hover{color:#E80088;}.gm-ui-hover-effect{top: 0 !important;right: 1px !important;}.olc-google-map .gm-style,.olc-google-map .gm-style>div + div{z-index: inherit;} .olc-result-cnt{bottom: 0;left: 0;background: #222222;display: inline-block;margin-top: 20px;font-size: 12px;padding: 5px 10px;line-height: normal;}.open-text{color:#0824F5;}.opening-text{color:#3CC13B;}.coming-text{color:#F3BB1C;} .wc-soon{display: flex;align-items: center;}.wc-soon:after{content:'•'; color:#fff; margin:0 5px; } .office-locater-one-left{height: calc(100% - 140px);}.olc-address-list::-webkit-scrollbar{width: 5px;}.olc-address-list::-webkit-scrollbar-thumb{background-color: #111111;} .olc-address-list{overflow-y: auto;} .mile-count{top:16px; right:2px;} .mile-count .fa{margin-left: 5px;font-weight: 300;font-size: 16px;vertical-align: middle;} .olc-address-list{counter-reset: list-number;border-color:#111111; } .search-list{border-bottom: 1px solid #111;} .search-list h6 {position: relative;padding-left: 25px;}.search-list h6:before{display: inline-block;content: counter(list-number) \" \";counter-increment: list-number;width: 16px; height: 16px; position:absolute; top:1px; left:0; background:#E80088;border-radius: 100px;font-size: 10px;line-height: 9px;display: flex;align-items: center;justify-content:center; }</style>";
 	ofcMapObj[olcSectionID].load_olc_stores = [];
 	ofcMapObj[olcSectionID].ofcMarker = [];
 	if( ofcMapObj[olcSectionID].load_olc_markers.length > 0 ){
@@ -437,8 +438,8 @@ function olcLoadOffices( response, olc_section, ajax = 0, olcSectionID ) {
 		 <span class=\"office-locater-one-title text-black uppercase font-bold block mb-3\">"+store_data.office_title+"</span><h6 class=\"office-locater-contact text-md mb-2 text-black\">"+store_data.office_name+"</h6>\
 		 <div class=\"office-locater-one-address text-md text-dark-500\"><div class=\"address-one-list\">\
 		 <span></span><p class=\" mb-3 text-md text-dark-500 leading-5\">"+store_data.office_address+"<br>"+store_data.office_address_2+"</p></div>\
-		 <div class=\"address-one-list text-md text-dark-500\"><span></span><p class=\" mb-2 text-md text-dark-500 leading-5 \"><a href=\"tel:"+store_data.office_phone+"\">"+store_data.office_phone+"</a></p></div>\
-		 <div class=\"address-one-list text-md text-dark-500\"><span></span><p class=\" mb-2 text-md text-dark-500 leading-5 \"><a href=\"mailto:"+store_data.office_email+"\">"+store_data.office_email+"</a></p>\
+		 <div class=\"address-one-list text-md text-dark-500\"><span></span><p class=\" mb-2 text-md text-dark-500 leading-5\"><a href=\"tel:"+store_data.office_phone+"\" class=\" focus:outline-none hover:text-pink-900\">"+store_data.office_phone+"</a></p></div>\
+		 <div class=\"address-one-list text-md text-dark-500\"><span></span><p class=\" mb-2 text-md text-dark-500 leading-5\"><a href=\"mailto:"+store_data.office_email+"\" class=\" focus:outline-none hover:text-pink-900\">"+store_data.office_email+"</a></p>\
 		 </div></div></div>";
 
 		 var store_address = store_data.office_address;
@@ -456,23 +457,23 @@ function olcLoadOffices( response, olc_section, ajax = 0, olcSectionID ) {
 		 }
 		 var open_html = '', coming_soon_html = '', opening_open_html = '', office_mile_html = '';
 		 if( store_data.office_open ){
-		 	open_html = 'Open * Closes at '+ store_data.office_open;
+		 	open_html = '<p class=\" text-sm text-dark-400 flex leading-normal mb-0 \"><span class=\" wc-soon open-text\">Open</span> Closes at '+ store_data.office_open+'</p>';
 		 }if( store_data.office_open_soon ){
-		 	opening_open_html = '<p class=\" mb-3 text-md text-dark-500 leading-5\">Opening Soon * '+ store_data.office_open_soon+'</p>';
+		 	opening_open_html = '<p class=\" text-sm text-dark-400 flex leading-normal mb-0 \"><span class=\" wc-soon opening-text\">Opening Soon</span> '+ store_data.office_open_soon+'</p>';
 		 }
 		 if( store_data.office_coming_soon ){
-		 	coming_soon_html = '<p class=\" mb-3 text-md text-dark-500 leading-5\">Coming Soon * ' + store_data.office_coming_soon+'</p>';
+		 	coming_soon_html = '<p class=\" text-sm text-dark-400 flex leading-normal mb-0\"><span class=\" wc-soon coming-text\">Coming Soon</span> ' + store_data.office_coming_soon+'</p>';
 		 } 
 		 if( store_data.office_mile ){
-		 	office_mile_html = '<div class=\" mb-3 text-md text-dark-500 leading-5\">' + store_data.office_mile+'<i class="fa fa-angle-right"></i></div>';
+		 	office_mile_html = '<div class=\"mile-count text-sm text-white leading-normal absolute right-0 font-bold \">' + store_data.office_mile+'<i class="fa fa-angle-right ml-1 inline-block"></i></div>';
 		 }
 
 		 store_address += store_data.office_city + store_data.office_state + store_data.office_country + " " + store_data.office_postal_code;
-		 store_data['office_map_html'] = "<div class=\"office-locater-one-box office-locater-box py-4 md:py-7 px-2 md:px-8 \" id=\"office-locator-box-"+store_data.office_id+"\" data-office-id=\""+store_data.office_id+"\">\r\n\t\t\t\t\
-		 <h6 class=\"office-locater-contact text-md mb-2 text-black\">"+store_data.office_name+"</h6>\
-		 <div class=\"office-locater-one-address text-md text-dark-500\"><div class=\"address-one-list\">\
-		 <span></span><p class=\" mb-3 text-md text-dark-500 leading-5\">"+store_address+"</p>"+open_html+opening_open_html+coming_soon_html+office_mile_html+"</div>\
-		 </div></div>";
+		 store_data['office_map_html'] = "<div class=\"search-list office-locater-one-box relative office-locater-box py-4 border-b border-dark-200 \" id=\"office-locator-box-"+store_data.office_id+"\" data-office-id=\""+store_data.office_id+"\">\r\n\t\t\t\t\
+		 <h6 class=\"office-locater-contact normal-case tracking-normal text-sm font-bold font-inter mb-2 text-white pr-10\">"+store_data.office_name+"</h6>\
+		 <div class=\"office-locater-one-address text-sm text-dark-400\"><div class=\"address-one-list\">\
+		 <span></span><p class=\" mb-2 text-sm text-dark-400 leading-5\">"+store_address+"</p>"+open_html+opening_open_html+coming_soon_html+office_mile_html+"</div>\
+		 </div></div> ";
 
 			address_html += store_data.office_map_html;
 			store_data.location_html = store_data.office_store_html;
@@ -518,11 +519,24 @@ function olcLoadOffices( response, olc_section, ajax = 0, olcSectionID ) {
 			store_data.position = new google.maps.LatLng(store_data.office_latitude, store_data.office_longitude);
 			ofcMapObj[olcSectionID].load_olc_stores.push(store_data);
 			loadNewStore[store_data.office_id] = store_data;
+
+			if( olc_section.attr('data-studio-list') == 'no' ){
+				
+				ofcMapObj[olcSectionID].ofcInfowindow.setContent(store_data.location_html);
+				ofcMapObj[olcSectionID].ofcInfowindow.open(ofcMapObj[olcSectionID].olc_map, ofcMapObj[olcSectionID].ofcMarker);
+			}
+
 		});
-		olc_section.find(".office-panel").html('<div class="olc-address-list">' + address_html + '</div>');	
-		loadAllOffices = loadNewStore;	
+		if( olc_section.attr('data-studio-list') == 'yes' ){
+			olc_section.find(".office-panel").html('<div class="olc-address-list overflow-y-auto h-full w-full">' + address_html + '</div>'+load_css);	
+			loadAllOffices = loadNewStore;		
+		}
+		
 	}else{
-		olc_section.find(".office-panel").html('<div class="olc-address-list no-address-found"></div>');
+		if( olc_section.attr('data-studio-list') == 'yes' ){
+			olc_section.find(".office-panel").html('<div class="olc-address-list no-address-found"></div>'+load_css);
+		}
+		
 	} 
 	loadAllOffices = loadNewStore;	
 }
