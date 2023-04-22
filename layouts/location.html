@@ -36,12 +36,10 @@
         <nav class="flex items-center justify-between">
           <!-- Header logo -->
           <div class="shrink-0 max-w-[150px] lg:max-w-none">
-            <h1 class="m-0">
               <a href="home.html">
                 <img src="assets/images/logo.svg" alt="logo" class="logo-light">
                 <img src="assets/images/logo-pink.svg" alt="logo" class="logo-dark">
               </a>
-            </h1>
           </div>
         <!-- header menu right -->
         <div class="flex items-center justify-end gap-6 xl:gap-10">
@@ -106,8 +104,8 @@
       <section class="p-0 office-locater-one olc-layout" data-studio-list="yes" data-json="json/location.json"  data-id="olc_488086" id="olc_488086">
         <div class="olc-container" x-data="{ tab: 'exp-sub-1' }">
           <div class="office-locater-two md:flex md:h-[calc(100vh-88px)]">
-            <div class="left-location w-full md:max-w-[300px] lg:max-w-[400px] pt-2 px-4 md:px-6 bg-black shrink-0">
-              <h2 class="text-xl lg:text-[22px] normal-case tracking-normal mb-4 md:mb-6">Find a Studio</h2>
+            <div class="studio-finder w-full md:max-w-[300px] lg:max-w-[400px] pt-2 px-4 md:px-6 bg-black shrink-0">
+              <h1 class="text-xl lg:text-[22px] normal-case tracking-normal mb-4 md:mb-6">Find a Studio</h1>
               <form class="olc-storelocator-filter md:pb-[42px] relative" method="post">
                   <div class="olc-location-search">           
                       <div class="olc-input relative">
@@ -129,7 +127,7 @@
 
               <div :class="[ tab != 'exp-sub-2' ? 'hidden md:block invisible md:visible' : '' ]" class="office-locater-one-left office-panel" id="office-panel"></div>
             </div>
-            <div :class="[ tab != 'exp-sub-1' ? 'hidden md:block invisible md:visible' : '' ]" class="right-map relative h-[500px] md:h-auto w-full">
+            <div :class="[ tab != 'exp-sub-1' ? 'hidden md:block invisible md:visible' : '' ]" class="studio-map relative h-[500px] md:h-auto w-full">
               <div class="absolute top-6 left-1/2 bg-white shadow-gray rounded-full p-3 text-pink-900 text-[12px] z-3 -translate-x-2/4 leading-normal font-medium">Search this area</div>
               <div class="olc-google-map w-full h-full">
                 

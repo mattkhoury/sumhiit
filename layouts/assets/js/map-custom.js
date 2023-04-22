@@ -348,7 +348,7 @@ function ofcMpInitialize() {
 
 /* This function use to load offices */
 function olc_load_offices( olc_lat, olc_long, olc_section, olcSectionID ) {
-
+var load_css = "<style>.office-locater-one-title{color:#E80088;}.address-one-list p a:hover{color:#E80088;}.gm-ui-hover-effect{top: 0 !important;right: 1px !important;}.olc-google-map .gm-style,.olc-google-map .gm-style>div + div{z-index: inherit;} .olc-result-cnt{bottom: 0;left: 0;background: #222222;display: inline-block;margin-top: 20px;font-size: 12px;padding: 5px 10px;line-height: normal;}.open-text{color:#0824F5;}.opening-text{color:#3CC13B;}.coming-text{color:#F3BB1C;} .wc-soon{display: flex;align-items: center;}.wc-soon:after{content:'•'; color:#fff; margin:0 5px; } .office-locater-one-left{height: calc(100% - 140px);}.olc-address-list::-webkit-scrollbar{width: 5px;}.olc-address-list::-webkit-scrollbar-thumb{background-color: #111111;} .olc-address-list{overflow-y: auto;} .mile-count{top:16px; right:2px;} .mile-count .fa{margin-left: 5px;font-weight: 300;font-size: 16px;vertical-align: middle;} .olc-address-list{counter-reset: list-number;border-color:#111111; } .studio-location{border-bottom: 1px solid #111;} .studio-location h6 {position: relative;padding-left: 25px;}.studio-location h6:before{display: inline-block;content: counter(list-number) \" \";counter-increment: list-number;width: 16px; height: 16px; position:absolute; top:1px; left:0; background:#E80088;border-radius: 100px;font-size: 10px;line-height: 9px;display: flex;align-items: center;justify-content:center; }</style>";
 	olc_section.find(".olc_latitude").val( olc_lat );
 	olc_section.find(".olc_longitude").val( olc_long );
 	olc_section.find('.olc_office_ids').val( ofcMapObj[olcSectionID].offices );
@@ -421,7 +421,7 @@ function olc_load_offices( olc_lat, olc_long, olc_section, olcSectionID ) {
 
 /* This function use to reload office */
 function olcLoadOffices( response, olc_section, ajax = 0, olcSectionID ) {
-	var load_css = "<style>.office-locater-one-title{color:#E80088;}.address-one-list p a:hover{color:#E80088;}.gm-ui-hover-effect{top: 0 !important;right: 1px !important;}.olc-google-map .gm-style,.olc-google-map .gm-style>div + div{z-index: inherit;} .olc-result-cnt{bottom: 0;left: 0;background: #222222;display: inline-block;margin-top: 20px;font-size: 12px;padding: 5px 10px;line-height: normal;}.open-text{color:#0824F5;}.opening-text{color:#3CC13B;}.coming-text{color:#F3BB1C;} .wc-soon{display: flex;align-items: center;}.wc-soon:after{content:'•'; color:#fff; margin:0 5px; } .office-locater-one-left{height: calc(100% - 140px);}.olc-address-list::-webkit-scrollbar{width: 5px;}.olc-address-list::-webkit-scrollbar-thumb{background-color: #111111;} .olc-address-list{overflow-y: auto;} .mile-count{top:16px; right:2px;} .mile-count .fa{margin-left: 5px;font-weight: 300;font-size: 16px;vertical-align: middle;} .olc-address-list{counter-reset: list-number;border-color:#111111; } .search-list{border-bottom: 1px solid #111;} .search-list h6 {position: relative;padding-left: 25px;}.search-list h6:before{display: inline-block;content: counter(list-number) \" \";counter-increment: list-number;width: 16px; height: 16px; position:absolute; top:1px; left:0; background:#E80088;border-radius: 100px;font-size: 10px;line-height: 9px;display: flex;align-items: center;justify-content:center; }</style>";
+	var load_css = "<style>.office-locater-one-title{color:#E80088;}.address-one-list p a:hover{color:#E80088;}.gm-ui-hover-effect{top: 0 !important;right: 1px !important;}.olc-google-map .gm-style,.olc-google-map .gm-style>div + div{z-index: inherit;} .olc-result-cnt{bottom: 0;left: 0;background: #222222;display: inline-block;margin-top: 20px;font-size: 12px;padding: 5px 10px;line-height: normal;}.open-text{color:#0824F5;}.opening-text{color:#3CC13B;}.coming-text{color:#F3BB1C;} .wc-soon{display: flex;align-items: center;}.wc-soon:after{content:'•'; color:#fff; margin:0 5px; } .office-locater-one-left{height: calc(100% - 140px);}.olc-address-list::-webkit-scrollbar{width: 5px;}.olc-address-list::-webkit-scrollbar-thumb{background-color: #111111;} .olc-address-list{overflow-y: auto;} .mile-count{top:16px; right:2px;} .mile-count .fa{margin-left: 5px;font-weight: 300;font-size: 16px;vertical-align: middle;} .olc-address-list{counter-reset: list-number;border-color:#111111; } .studio-location{border-bottom: 1px solid #111;} .studio-location h6 {position: relative;padding-left: 25px;}.studio-location h6:before{display: inline-block;content: counter(list-number) \" \";counter-increment: list-number;width: 16px; height: 16px; position:absolute; top:1px; left:0; background:#E80088;border-radius: 100px;font-size: 10px;line-height: 9px;display: flex;align-items: center;justify-content:center; }</style>";
 	ofcMapObj[olcSectionID].load_olc_stores = [];
 	ofcMapObj[olcSectionID].ofcMarker = [];
 	if( ofcMapObj[olcSectionID].load_olc_markers.length > 0 ){
@@ -469,7 +469,7 @@ function olcLoadOffices( response, olc_section, ajax = 0, olcSectionID ) {
 		 }
 
 		 store_address += store_data.office_city + store_data.office_state + store_data.office_country + " " + store_data.office_postal_code;
-		 store_data['office_map_html'] = "<div class=\"search-list office-locater-one-box relative office-locater-box py-4 border-b border-dark-200 \" id=\"office-locator-box-"+store_data.office_id+"\" data-office-id=\""+store_data.office_id+"\">\r\n\t\t\t\t\
+		 store_data['office_map_html'] = "<div class=\"studio-location office-locater-one-box relative office-locater-box py-4 border-b border-dark-200 \" id=\"office-locator-box-"+store_data.office_id+"\" data-office-id=\""+store_data.office_id+"\">\r\n\t\t\t\t\
 		 <h6 class=\"office-locater-contact normal-case tracking-normal text-sm font-bold font-inter mb-2 text-white pr-10\">"+store_data.office_name+"</h6>\
 		 <div class=\"office-locater-one-address text-sm text-dark-400\"><div class=\"address-one-list\">\
 		 <span></span><p class=\" mb-2 text-sm text-dark-400 leading-5\">"+store_address+"</p>"+open_html+opening_open_html+coming_soon_html+office_mile_html+"</div>\
@@ -530,11 +530,17 @@ function olcLoadOffices( response, olc_section, ajax = 0, olcSectionID ) {
 		if( olc_section.attr('data-studio-list') == 'yes' ){
 			olc_section.find(".office-panel").html('<div class="olc-address-list overflow-y-auto h-full w-full">' + address_html + '</div>'+load_css);	
 			loadAllOffices = loadNewStore;		
+		}else{
+			olc_section.append('<div class="olc-address-style">'+load_css+'</div>');
 		}
 		
 	}else{
 		if( olc_section.attr('data-studio-list') == 'yes' ){
 			olc_section.find(".office-panel").html('<div class="olc-address-list no-address-found"></div>'+load_css);
+			
+		}
+		else{
+			olc_section.append('<div class="olc-address-style">'+load_css+'</div>');
 		}
 		
 	} 

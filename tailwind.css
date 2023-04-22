@@ -80,8 +80,12 @@
         @apply border-white
     }
 
+    h2.des,
     p{
         @apply font-inter text-md md:text-lg font-normal mb-4
+    }
+    h2.des{
+        @apply normal-case tracking-normal mb-11
     }
     section {
         @apply py-10 md:py-20
@@ -95,7 +99,7 @@
     .menu li.menu-btn a{
         @apply font-inter text-md md:text-sm lg:text-md font-semibold max-w-fit block bg-white before:hidden uppercase text-black py-3 md:py-4 px-5 lg:px-6 xl:px-10 transition-all duration-500 hover:bg-primary-900 hover:text-white;
     }
-    .hero-section.bg-overlay:before{
+    .hero.bg-overlay:before{
         opacity: 0.5;
     }
     .bg-overlay:before{
@@ -152,34 +156,34 @@
        @apply hidden
     }
 
-    .hero-section .swiper .swiper-slide h6{
+    .hero .swiper .swiper-slide h6{
         @apply relative top-8 transition-all duration-200 delay-200 opacity-0
     }
 
-    .hero-section .swiper .swiper-slide h1{
+    .hero .swiper .swiper-slide h1{
         @apply relative top-10 transition-all duration-300 delay-300 opacity-0
     }
-    .hero-section .swiper .swiper-slide .des{
+    .hero .swiper .swiper-slide .des{
         @apply relative top-12 transition-all duration-500 delay-500 opacity-0
     }
-    .hero-section .swiper .swiper-slide .get-started{
+    .hero .swiper .swiper-slide .get-started{
         @apply relative top-14 transition-all duration-700 delay-700 opacity-0
     }
 
-    .hero-section .swiper .swiper-slide.swiper-slide-active h6,
-    .hero-section .swiper .swiper-slide.swiper-slide-active h1,
-    .hero-section .swiper .swiper-slide.swiper-slide-active .des,
-    .hero-section .swiper .swiper-slide.swiper-slide-active .get-started{
+    .hero .swiper .swiper-slide.swiper-slide-active h6,
+    .hero .swiper .swiper-slide.swiper-slide-active h1,
+    .hero .swiper .swiper-slide.swiper-slide-active .des,
+    .hero .swiper .swiper-slide.swiper-slide-active .get-started{
         @apply top-0 opacity-100
     }
     .swiper-pagination .swiper-pagination-bullet{
         @apply w-[40px] h-[10px] bg-white rounded-xl
     }
 
-    .video-section:before{
+    .workout-video:before{
         @apply absolute bottom-0 left-0 w-full h-2/4 md:h-[350px] z-1;
     }
-    .video-section:before{
+    .workout-video:before{
         content: '';
         background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
         transform: matrix(1, 0, 0, -1, 0, 0);
@@ -289,13 +293,13 @@
    .sign-up-form .checkcontainer input:checked ~ .checkmark{
         @apply border-primary-900
     }
-    .sign-up-section{
+    .studio-sign-up{
         background-position:left  bottom -160px;
     }
-    .studio-service{
+    .studio-amenity{
         @apply border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]
     }
-    .search-list {
+    .studio-location {
         @apply border-b border-dark-200
     }
     .olc-location-search-input:focus{
