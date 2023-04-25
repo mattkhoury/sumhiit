@@ -99,7 +99,7 @@
     .menu li.menu-btn a{
         @apply font-inter text-md md:text-sm lg:text-md font-semibold max-w-fit block bg-white before:hidden uppercase text-black py-3 md:py-4 px-5 lg:px-6 xl:px-10 transition-all duration-500 hover:bg-primary-900 hover:text-white;
     }
-    .hero.bg-overlay:before{
+    .hero-section.bg-overlay:before{
         opacity: 0.5;
     }
     .bg-overlay:before{
@@ -140,50 +140,50 @@
     }
 
 
-    .header.header-bar.show .header-h{
+    .header-part.header-bar.show .header-h{
         @apply h-3 md:h-9 lg:h-12
     }
-    .header.show .header-h{
+    .header-part.show .header-h{
         @apply h-0
     }
-    .header.header-bar.show.open .header-h{
+    .header-part.header-bar.show.open .header-h{
         @apply h-0
     }
-    .header.show.open .header-h{
+    .header-part.show.open .header-h{
         @apply h-3 md:h-9 lg:h-12
     }
     .header-bar .header-bar{
        @apply hidden
     }
 
-    .hero .swiper .swiper-slide h6{
+    .hero-section .swiper .swiper-slide h6{
         @apply relative top-8 transition-all duration-200 delay-200 opacity-0
     }
 
-    .hero .swiper .swiper-slide h1{
+    .hero-section .swiper .swiper-slide h1{
         @apply relative top-10 transition-all duration-300 delay-300 opacity-0
     }
-    .hero .swiper .swiper-slide .des{
+    .hero-section .swiper .swiper-slide .des{
         @apply relative top-12 transition-all duration-500 delay-500 opacity-0
     }
-    .hero .swiper .swiper-slide .get-started{
+    .hero-section .swiper .swiper-slide .get-started{
         @apply relative top-14 transition-all duration-700 delay-700 opacity-0
     }
 
-    .hero .swiper .swiper-slide.swiper-slide-active h6,
-    .hero .swiper .swiper-slide.swiper-slide-active h1,
-    .hero .swiper .swiper-slide.swiper-slide-active .des,
-    .hero .swiper .swiper-slide.swiper-slide-active .get-started{
+    .hero-section .swiper .swiper-slide.swiper-slide-active h6,
+    .hero-section .swiper .swiper-slide.swiper-slide-active h1,
+    .hero-section .swiper .swiper-slide.swiper-slide-active .des,
+    .hero-section .swiper .swiper-slide.swiper-slide-active .get-started{
         @apply top-0 opacity-100
     }
     .swiper-pagination .swiper-pagination-bullet{
         @apply w-[40px] h-[10px] bg-white rounded-xl
     }
 
-    .workout-video:before{
+    .workout-video-section:before{
         @apply absolute bottom-0 left-0 w-full h-2/4 md:h-[350px] z-1;
     }
-    .workout-video:before{
+    .workout-video-section:before{
         content: '';
         background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
         transform: matrix(1, 0, 0, -1, 0, 0);
@@ -293,7 +293,7 @@
    .sign-up-form .checkcontainer input:checked ~ .checkmark{
         @apply border-primary-900
     }
-    .studio-sign-up{
+    .sign-up-section{
         background-position:left  bottom -160px;
     }
     .studio-amenity{
@@ -304,6 +304,24 @@
     }
     .olc-location-search-input:focus{
         outline: outset 1px;
+    }
+    .studio-cms-section a{
+        @apply text-pink-900;
+    }
+    .studio-cms-section a:hover{
+        @apply text-white;
+    }
+    .studio-cms-section h1 {
+        @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 tracking-[2px] sm:tracking-[5px]
+    }
+    .studio-cms-section h2 {
+        @apply text-2xl md:text-3xl leading-2xl md:leading-3xl
+    }
+    .studio-cms-section h3 {
+        @apply text-1xl md:text-2xl leading-1xl md:leading-2xl
+    }
+    .studio-cms-section h4 {
+        @apply text-xl md:text-1xl md:leading-1xl
     }
 
     @media (min-width: 768px){ 

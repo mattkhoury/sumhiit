@@ -23,13 +23,13 @@
   <div class="text-md lg:text-lg leading-normal text-white font-normal font-inter antialiased bg-black pt-[88px]">
 
     <!-- start-header -->
-    <header id="header" class="header fixed bg-black top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : true, marginOffset : 0 }">
+    <header id="header" class="header-part fixed bg-black top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : true, marginOffset : 0 }">
      <div x-ref=spacer class="absolute h-3 md:h-9 lg:h-12"></div>
      <!-- <div class="header-h h-3 md:h-9 lg:h-12" :style="marginOffset > 0 ? 'height: ' + ($refs.spacer.getBoundingClientRect().height - marginOffset >= 0 ? $refs.spacer.getBoundingClientRect().height - marginOffset : 0) + 'px' : ''"></div> -->
-     <div class="header-bar absolute top-0 right-0 bottom-0 left-0 bg-black -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="m sd:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
+     <div class="header-bar absolute top-0 right-0 bottom-0 left-0 bg-black -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="md:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 backdrop-blur-md -z-20 shadow-lg" :class="isOpen ? 'h-screen w-screen' : ''" x-show="isOpen || showBar" x-cloak class=md:hidden x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <!-- start header main navigation -->
-     <div id="main-navigation" class=main-navigation py-7 @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
+     <div id="navigation" class=main-navigation py-7 @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
       <!-- container -->
       <div class="px-4 md:px-6">
         <!-- hade nav -->
@@ -97,7 +97,7 @@
 <!-- end-header -->
 
 <!-- start main wrapper -->
-<div id="main-wrapper" class="main-wrapper">
+<div id="main-wrapper">
 
 
     <!-- Start office locater  -->
@@ -127,7 +127,7 @@
 
               <div :class="[ tab != 'exp-sub-2' ? 'hidden md:block invisible md:visible' : '' ]" class="office-locater-one-left office-panel" id="office-panel"></div>
             </div>
-            <div id="studio-map" :class="[ tab != 'exp-sub-1' ? 'hidden md:block invisible md:visible' : '' ]" class="studio-map relative h-[500px] md:h-auto w-full">
+            <div id="studio-map" :class="[ tab != 'exp-sub-1' ? 'hidden md:block invisible md:visible' : '' ]" class="relative h-[500px] md:h-auto w-full">
               <div class="absolute top-6 left-1/2 bg-white shadow-gray rounded-full p-3 text-pink-900 text-[12px] z-3 -translate-x-2/4 leading-normal font-medium">Search this area</div>
               <div class="olc-google-map w-full h-full">
                 
@@ -144,7 +144,7 @@
   <!-- end main wrapper -->
 
   <!-- start footer -->
-  <footer id="footer" class="footer bg-white py-14 pb-24 md:py-24 text-black">
+  <footer id="footer" class="footer-part bg-white py-14 pb-24 md:py-24 text-black">
     <!-- container -->
     <div class="px-4 md:px-6">
       <div class="flex flex-wrap md:flex-nowrap -mx-4 gap-5 lg:gap-10">
@@ -198,7 +198,7 @@
       <div class="md:border-t md:border-b text-center lg:text-left lg:flex items-center justify-between border-dark-400 py-9 md:mb-12">
         <!-- footer bottom menu -->
         <ul class="md:flex items-center flex-wrap justify-center lg:justify-start gap-4 lg:gap-7 text-[12px] text-dark-500">
-          <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Privacy Policy</a></li>
+          <li class="mb-2 md:mb-0"><a href="privacy-policy.html" class="underline hover:text-black hover:no-underline">Privacy Policy</a></li>
           <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Accessibility Statement</a></li>
           <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Terms of Service</a></li>
           <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">DMCA Policy</a></li>

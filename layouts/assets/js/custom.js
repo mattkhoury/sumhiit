@@ -1,5 +1,5 @@
 /* What we do slider */
-      var swiper = new Swiper(".hero .mySwiper", {
+      var swiper = new Swiper(".hero-section .mySwiper", {
         spaceBetween: 0,
         effect: "fade",
         pagination: {
@@ -14,19 +14,19 @@
 
 /*sticky header*/
       window.onload = function() {
-        $('.header').addClass("header-bar show");
+        $('.header-part').addClass("header-bar show");
         if ($(document).scrollTop() > 50) {
-          $('.header').removeClass("header-bar");
+          $('.header-part').removeClass("header-bar");
         }
       }
 
     $(window).scroll(function() {
        if ($(this).scrollTop() > 50){  
-          $('.header').removeClass("header-bar");
+          $('.header-part').removeClass("header-bar");
           $('.sticky-header').removeClass("open");
       }
       else{
-          $('.header').addClass("open");
+          $('.header-part').addClass("open");
       }
   });
 
@@ -35,7 +35,7 @@
       if ($('.studio-map-stick').length>0){
         function sticky_relocate() {
           var window_top = $(window).scrollTop();
-          var footer_top = $(".workout-details .ride-lift").offset().top + 160;
+          var footer_top = $("#workout-details .ride-lift").offset().top + 160;
           var div_top = $('.studio-map-stick').offset().top - 50;
           var div_height = $(".studio-map-stick").height();
           
