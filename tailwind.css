@@ -127,13 +127,13 @@
         @apply block
     }
     .main-navigation.stick .menu li a{
-        @apply text-pink-900
+        @apply text-black
     }
     .main-navigation.stick .menu li a::before{
-        @apply bg-pink-900
+        @apply bg-black
     }
     .main-navigation.stick .user-icon a{
-        @apply text-pink-900
+        @apply text-black
     }
     .main-navigation.stick .menu li.menu-btn a:hover{
         @apply bg-pink-900 text-white
@@ -156,7 +156,7 @@
        @apply hidden
     }
 
-    .hero-section .swiper .swiper-slide h6{
+    .hero-section .swiper .swiper-slide .sub-title {
         @apply relative top-8 transition-all duration-200 delay-200 opacity-0
     }
 
@@ -170,7 +170,7 @@
         @apply relative top-14 transition-all duration-700 delay-700 opacity-0
     }
 
-    .hero-section .swiper .swiper-slide.swiper-slide-active h6,
+    .hero-section .swiper .swiper-slide.swiper-slide-active .sub-title,
     .hero-section .swiper .swiper-slide.swiper-slide-active h1,
     .hero-section .swiper .swiper-slide.swiper-slide-active .des,
     .hero-section .swiper .swiper-slide.swiper-slide-active .get-started{
@@ -348,6 +348,16 @@
             @apply absolute bottom-0 left-0 w-full h-[30%] z-1;
         }
         .inner-bg-overlay:after{
+            content: '';
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+        }
+        .workout-detail picture{
+            @apply relative
+        }
+        .workout-detail picture:before{
+            @apply absolute bottom-0 left-0 w-full h-[60%] z-1;
+        }
+        .workout-detail picture:before{
             content: '';
             background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
         }
