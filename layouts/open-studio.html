@@ -262,94 +262,125 @@
                   <div class="absolute -top-4 left-2/4 whitespace-nowrap -translate-x-2/4 bg-pink-900 py-0.5 px-8 uppercase font-semibold text-md">LIMITED OFFER</div>
                   <form method="post">
 
-                    <div class="form-page px-1">
+                    <div class="relative overflow-hidden pb-14 w-screen h-full h-[565px] bg-white" x-data="{ currentSlide: 1, pauseSlide : false }" x-init="window.setInterval(() => { if(pauseSlide == false) {(currentSlide == 2) ? currentSlide = 1 : currentSlide++; }}, 600000)">
+                      <!-- Slides Container -->
+                      <div class=flex>
+                        <div x-show="currentSlide == 1" class="absolute bg-white min-w-full h-full" :class="currentSlide == 1 ? 'z-10' : ''" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="transform -translate-x-[100%]" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100 transform" x-transition:leave-end="transform">
+                          <div class="px-1">
 
-                      <div class="text-center text-black mb-8 md:mb-10">
-                        <h2 class="text-1xl md:text-2xl leading-1xl md:leading-2xl mb-3 text-black normal-case font-inter font-bold tracking-normal">Try a class for free!</h2>
-                        <p>Share your details with us. </p>
-                      </div>
+                            <div class="text-center text-black mb-8 md:mb-10">
+                              <h2 class="text-1xl md:text-2xl leading-1xl md:leading-2xl mb-3 text-black normal-case font-inter font-bold tracking-normal">Try a class for free!</h2>
+                              <p>Share your details with us. </p>
+                            </div>
 
-                      <div class="mb-4 w-full">
-                        <input type="text" placeholder="First Name*" class="form-control" required >
-                      </div>
-                      <div class="mb-4 w-full">
-                        <input type="text" placeholder="Last Name*" class="form-control" required >
-                      </div>
-                      <div class="mb-4 w-full">
-                        <input type="email" placeholder="Email*" class="form-control" required >
-                      </div>
-                      <div class="mb-4 w-full">
-                        <input type="number" placeholder="Phone*" class="form-control" required >
-                      </div>
-                      <div class="mb-6 w-full">
-                        <label class="checkcontainer block text-black text-sm cursor-pointer">I agree to the <a href="javascript:;" class="underline hover:no-underline">Terms and Conditions.*</a>
-                          <input type="checkbox" required>
-                          <span class="checkmark"></span>
-                        </label>
+                            <div class="mb-4 w-full">
+                              <input type="text" placeholder="First Name*" class="form-control" required >
+                            </div>
+                            <div class="mb-4 w-full">
+                              <input type="text" placeholder="Last Name*" class="form-control" required >
+                            </div>
+                            <div class="mb-4 w-full">
+                              <input type="email" placeholder="Email*" class="form-control" required >
+                            </div>
+                            <div class="mb-4 w-full">
+                              <input type="number" placeholder="Phone*" class="form-control" required >
+                            </div>
+                            <div class="mb-6 w-full">
+                              <label class="checkcontainer block text-black text-sm cursor-pointer">I agree to the <a href="javascript:;" class="underline hover:no-underline">Terms and Conditions.*</a>
+                                <input type="checkbox" required>
+                                <span class="checkmark"></span>
+                              </label>
 
-                        <label class="checkcontainer block mt-4 text-black text-sm cursor-pointer">I agree receive marketing materials and promotions.
-                          <input type="checkbox">
-                          <span class="checkmark"></span>
-                        </label>
+                              <label class="checkcontainer block mt-4 text-black text-sm cursor-pointer">I agree receive marketing materials and promotions.
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                              </label>
+                            </div>
+                            <div>
+                              <button @click="currentSlide = 2;" type="submit" class="btn-primary w-full btn">NEXT: book A CLASS</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div x-show="currentSlide == 2" class="absolute bg-white min-w-full h-full" :class="currentSlide == 2 ? 'z-10' : ''" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="transform translate-x-[100%]" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100 transform" x-transition:leave-end="transform">
+                          <div class="px-1">
+
+                            <div class="text-center text-black mb-8 md:mb-10">
+                              <h2 class="text-1xl md:text-2xl leading-1xl md:leading-2xl mb-3 text-black normal-case font-inter font-bold tracking-normal">Try a class for free!</h2>
+                              <p>Share your details with us. </p>
+                            </div>
+
+                            <div class="mb-4 w-full">
+                              <input type="text" placeholder="First Name*" class="form-control" required >
+                            </div>
+                            <div class="mb-4 w-full">
+                              <input type="text" placeholder="Last Name*" class="form-control" required >
+                            </div>
+                            <div class="mb-4 w-full">
+                              <input type="email" placeholder="Email*" class="form-control" required >
+                            </div>
+                            <div class="mb-4 w-full">
+                              <input type="number" placeholder="Phone*" class="form-control" required >
+                            </div>
+                            <div class="mb-6 w-full">
+                              <label class="checkcontainer block text-black text-sm cursor-pointer">I agree to the <a href="javascript:;" class="underline hover:no-underline">Terms and Conditions.*</a>
+                                <input type="checkbox" required>
+                                <span class="checkmark"></span>
+                              </label>
+
+                              <label class="checkcontainer block mt-4 text-black text-sm cursor-pointer">I agree receive marketing materials and promotions.
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                              </label>
+                            </div>
+                            <div>
+                              <button @click="currentSlide = 3;" type="submit" class="btn-primary w-full btn">NEXT: book A CLASS</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div x-show="currentSlide == 3" class="absolute bg-white min-w-full h-full" :class="currentSlide == 3 ? 'z-10' : ''" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="transform translate-x-[100%]" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100 transform" x-transition:leave-end="transform">
+                          <div class="px-1">
+
+                            <div class="text-center text-black mb-8 md:mb-10">
+                              <h2 class="mb-3 text-black normal-case font-inter font-bold tracking-normal">Get early access</h2>
+                              <p>Don't miss your opportunity to get in on the ground floor and take advantage of our best pricing, perks, and access with a foundation membership. Sign up to learn more.</p>
+                            </div>
+
+                            <div class="mb-4 w-full">
+                              <input type="text" placeholder="First Name*" class="form-control" required >
+                            </div>
+                            <div class="mb-4 w-full">
+                              <input type="text" placeholder="Last Name*" class="form-control" required >
+                            </div>
+                            <div class="mb-6 w-full">
+                              <label class="checkcontainer text-black text-sm cursor-pointer">I agree to the <a href="javascript:;" class="underline hover:no-underline">Terms and Conditions.*</a>
+                                <input type="checkbox" required>
+                                <span class="checkmark"></span>
+                              </label>
+                            </div>
+                            <div>
+                              <button @click="currentSlide = 4;" type="submit" class="btn-primary w-full btn">NEXT: book A CLASS</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div x-show="currentSlide == 4" class="absolute bg-white min-w-full h-full" :class="currentSlide == 4 ? 'z-10' : ''" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="transform translate-x-[100%]" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100 transform" x-transition:leave-end="transform">
+                          <div class="px-1">
+
+                            <div class="text-center text-black mb-8 md:mb-10">
+                              <h2 class="mb-3 text-black normal-case font-inter font-bold tracking-normal">You have signed up!</h2>
+                              <p>Don't miss your opportunity to get in on the ground floor and take advantage of our best pricing, perks, and access with a foundation membership. Sign up to learn more.</p>
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
-                      <div>
-                        <button type="submit" class="btn-primary w-full btn">NEXT: book A CLASS</button>
-                      </div>
-                    </div>
-                    <div class="form-page px-1">
-                      <div class="text-center text-black mb-8 md:mb-10">
-                        <h4 class="mb-3 text-black normal-case font-inter font-bold tracking-normal">Get early access</h4>
-                        <p>Don't miss your opportunity to get in on the ground floor and take advantage of our best pricing, perks, and access with a foundation membership. Sign up to learn more.</p>
-                      </div>
-                      
-                      <div class="mb-4 w-full">
-                        <input type="text" placeholder="First Name*" class="form-control" required >
-                      </div>
-                      <div class="mb-4 w-full">
-                        <input type="text" placeholder="Last Name*" class="form-control" required >
-                      </div>
-                      <div class="mb-4 w-full">
-                        <input type="email" placeholder="Email*" class="form-control" required >
-                      </div>
-                      <div class="mb-6 w-full">
-                        <label class="checkcontainer text-black text-sm cursor-pointer">I agree to the <a href="javascript:;" class="underline hover:no-underline">Terms and Conditions.*</a>
-                          <input type="checkbox" required>
-                          <span class="checkmark"></span>
-                        </label>
-                      </div>
-                      <div>
-                        <button type="submit" class="btn-primary w-full btn" data-nav="next">NEXT: book A CLASS</button>
-                      </div>
-                    </div>
-                    <div class="form-page px-1">
-                      <div class="text-center text-black mb-8 md:mb-10">
-                        <h4 class="mb-3 text-black normal-case font-inter font-bold tracking-normal">Get early access</h4>
-                        <p>Don't miss your opportunity to get in on the ground floor and take advantage of our best pricing, perks, and access with a foundation membership. Sign up to learn more.</p>
-                      </div>
-                      
-                      <div class="mb-4 w-full">
-                        <input type="text" placeholder="First Name*" class="form-control" required >
-                      </div>
-                      <div class="mb-4 w-full">
-                        <input type="text" placeholder="Last Name*" class="form-control" required >
-                      </div>
-                      <div class="mb-6 w-full">
-                        <label class="checkcontainer text-black text-sm cursor-pointer">I agree to the <a href="javascript:;" class="underline hover:no-underline">Terms and Conditions.*</a>
-                          <input type="checkbox" required>
-                          <span class="checkmark"></span>
-                        </label>
-                      </div>
-                      <div>
-                        <button type="submit" class="btn-primary w-full btn" data-nav="prev">PRVE: book A CLASS</button>
+                      <div class="pagination absolute w-full bottom-5 items-center justify-center z-20 flex" @mouseover="pauseSlide = true;" @mouseleave="pauseSlide = false;">
+                        <button type=button @click="currentSlide = 1;" class="bar-circle before:block border border-black" :class="currentSlide == 1 ? 'active' : 'bg-white'" aria-current=true aria-label="Slide 1"></button>
+                        <button type=button @click="currentSlide = 2;" class="bar-circle before:block border border-black" :class="currentSlide == 2 ? 'active' : 'bg-white'" aria-current=false aria-label="Slide 2"></button>
+                        <button type=button @click="currentSlide = 3;" class="bar-circle before:block border border-black" :class="currentSlide == 3 ? 'active' : 'bg-white'" aria-current=false aria-label="Slide 3"></button>
                       </div>
                     </div>
 
                   </form>
-                </div>
-                <div class="pagination mt-8 flex items-center justify-center">
-                  <span class="bar-circle before:block border border-black active"></span>
-                  <span class="bar-circle before:block border border-black"></span>
-                  <span class="bar-circle before:block border border-black"></span>
                 </div>
 
               </div>
@@ -410,7 +441,7 @@
               <div class="absolute -top-[90px] lg:-top-[135px] -ml-[90px] md:ml-0 left-2/4 md:left-24 z-2 overflow-hidden bg-black w-[180px] h-[180px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] rounded-full text-center text-white grid content-center">
                 <img src="assets/images/swap-blackbg-blue.gif" alt="arrow" class="mx-auto mt-[-20px] -z-1 -mb-3 md:mb-[-30px] -rotate-90 block max-w-[100px] md:max-w-[200px]">
                 <div class="text-4xl leading-4xl tracking-[5px] font-titling-gothic-fb uppercase font-normal lg:text-[49px] mb-0">35</div>
-              <p class="text-[12px] md:text-md tracking-[5px] uppercase">MINs</p>
+                <p class="text-[12px] md:text-md tracking-[5px] uppercase">MINs</p>
               </div>
 
               <div class="absolute top-0 left-0 w-full h-full">
@@ -434,7 +465,7 @@
               <div class="absolute -top-[105px] -ml-[105px] md:ml-0 left-2/4 md:left-24 z-2 overflow-hidden bg-black w-[210px] h-[210px] rounded-full text-center text-white grid content-end">
 
                 <div class="text-4xl leading-4xl tracking-[5px] font-titling-gothic-fb uppercase font-normal mb-0">10</div>
-              <p class="text-[12px] md:text-md tracking-[5px] uppercase">MINs</p>
+                <p class="text-[12px] md:text-md tracking-[5px] uppercase">MINs</p>
               </div>
 
               <div class="absolute top-0 left-0 w-full h-full">
@@ -793,7 +824,7 @@
               <div class="heading">
                 <h2 class="title mb-2">one hard-working app</h2>
                 <p class="mb-12">The SUMHIIT app puts managing your membership in the palm of your hands. Join a studio, earn points, and track your class count! View class schedules and book with ease. Track your progress and stay motivated to keep crushing your goals.</p>
-                
+
                 <div class="flex gap-4">
                   <a href="javascript:;"><img src="assets/images/apple-app-store.png" alt="apple app store" width="120"></a>
                   <a href="javascript:;"><img src="assets/images/google-play-store.png" alt="google app store" width="125"></a>
