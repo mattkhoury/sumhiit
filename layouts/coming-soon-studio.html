@@ -19,64 +19,69 @@
 
 
 </head>
-<body>
+<body x-data="{headerScroll: true}">
   <div class="text-md lg:text-lg leading-normal text-white font-normal font-inter antialiased bg-black">
 
     <!-- start-header -->
-    <header id="header" class="header-part fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : true, marginOffset : 0 }">
+    <header id="header" class="header-part fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : false, marginOffset : 0, headerXl: true, headerScroll: true }" x-init="showBar = (window.pageYOffset > 20) ? true : false, headerScroll = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
+ + document.querySelector('#studio-map').clientHeight 
+ ) ? false : true"
+      @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
      <div x-ref=spacer class="absolute h-3 md:h-9 lg:h-12"></div>
-     <div class="header-h h-3 md:h-9 lg:h-12" :style="marginOffset > 0 ? 'height: ' + ($refs.spacer.getBoundingClientRect().height - marginOffset >= 0 ? $refs.spacer.getBoundingClientRect().height - marginOffset : 0) + 'px' : ''"></div>
+     <div x-data="{ headerXl: true }" x-init="headerXl = (window.pageYOffset > 20) ? false : true" @scroll.window="headerXl = (window.pageYOffset > 20) ? false : true" :class="headerXl ? 'h-3 md:h-9 lg:h-12' : 'h-0 md:h-0 lg:h-0'"></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 bg-black/50 md:bg-white/10 -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="md:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 backdrop-blur-md -z-20 shadow-lg" :class="isOpen ? 'h-screen w-screen' : ''" x-show="isOpen || showBar" x-cloak class=md:hidden x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <!-- start header main navigation -->
-     <div id="navigation" class=main-navigation py-7 @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
+     <div id="navigation" @scroll.window="headerScroll = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
+ + document.querySelector('#studio-map').clientHeight 
+ ) ? false : true" :class="headerScroll ? 'main-navigation' : 'main-navigation stick'"  @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
       <!-- container -->
       <div class="container">
         <!-- hade nav -->
         <nav class="flex items-center justify-between">
           <!-- Header logo -->
           <div class="shrink-0 max-w-[150px] lg:max-w-none">
-              <a href="home.html">
-                <img src="assets/images/logo.svg" alt="logo" class="logo-light">
-                <img src="assets/images/logo-pink-dark.svg" alt="logo" class="logo-dark">
-              </a>
-          </div>
-        <!-- header menu right -->
-        <div class="flex items-center justify-end gap-6 xl:gap-10">
-          <!-- main menu -->
-          <div class="main-menu hidden md:block">
-            <ul class="menu md:flex items-center gap-5 xl:gap-9 text-white text-sm lg:text-md xl:text-lg font-inter font-semibold">
-              <li><a href="javascript:;" class="">THE WORKOUT</a></li>
-              <li><a href="javascript:;" class="">BLOG</a></li>
-              <li><a href="javascript:;" class="">OUR STUDIOS</a></li>
-              <li class="menu-btn"><a href="javascript:;">members book </a></li>
-            </ul>
-          </div>
-
-          <!-- Start search icon -->
-          <div class="user-icon hidden md:block">
-            <a href="javascript:;" class="text-white hover:text-primary-900">
-              <svg width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 39.2705C29.9834 39.2705 38.667 30.6055 38.667 20.1035C38.667 9.62012 29.9834 0.936523 19.4814 0.936523C8.99805 0.936523 0.333008 9.62012 0.333008 20.1035C0.333008 30.6055 9.0166 39.2705 19.5 39.2705ZM19.5 26.5049C14.2119 26.5049 10.1299 28.3789 8.18164 30.5498C5.6582 27.8223 4.11816 24.1484 4.11816 20.1035C4.11816 11.5684 10.9463 4.72168 19.4814 4.72168C28.0166 4.72168 34.9004 11.5684 34.9004 20.1035C34.9004 24.1484 33.3604 27.8223 30.8184 30.5498C28.8701 28.3789 24.7881 26.5049 19.5 26.5049ZM19.5 23.4619C23.0996 23.4805 25.8828 20.4189 25.8828 16.4297C25.8828 12.6816 23.0811 9.56445 19.5 9.56445C15.9375 9.56445 13.0986 12.6816 13.1172 16.4297C13.1357 20.4189 15.9189 23.4248 19.5 23.4619Z" fill="currentColor"/>
-              </svg>
+            <a href="home.html">
+              <img src="assets/images/logo.svg" alt="logo" class="logo-light">
+              <img src="assets/images/logo-pink-dark.svg" alt="logo" class="logo-dark">
             </a>
           </div>
+          <!-- header menu right -->
+          <div class="flex items-center justify-end gap-6 xl:gap-10">
+            <!-- main menu -->
+            <div class="main-menu hidden md:block">
+              <ul class="menu md:flex items-center gap-5 xl:gap-9 text-white text-sm lg:text-md xl:text-lg font-inter font-semibold">
+                <li><a href="javascript:;" class="">THE WORKOUT</a></li>
+                <li><a href="javascript:;" class="">BLOG</a></li>
+                <li><a href="javascript:;" class="">OUR STUDIOS</a></li>
+                <li class="menu-btn"><a href="javascript:;">members book </a></li>
+              </ul>
+            </div>
 
-          <div class="mobile-toggle block md:hidden">
-            <button type=button @click="isOpen = !isOpen" class="inline-flex items-center justify-center rounded-md p-2 text-white hover:backdrop-blur-md hover:bg-white/30 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls=mobile-menu aria-expanded=false>
-              <span class=sr-only>Open main menu</span> <!-- Icon when menu is closed --> 
-              <svg class="block h-9 w-9" xmlns=http://www.w3.org/2000/svg fill=none viewBox="0 0 24 24" stroke-width=1.5 stroke=currentColor aria-hidden=true>
-               <path stroke-linecap=round stroke-linejoin=round d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-             </svg>
-             <!-- Icon when menu is open --> 
-             <svg class="hidden h-9 w-9" xmlns=http://www.w3.org/2000/svg fill=none viewBox="0 0 24 24" stroke-width=2 stroke=currentColor aria-hidden=true>
-               <path stroke-linecap=round stroke-linejoin=round d="M6 18L18 6M6 6l12 12" />
-             </svg>
-           </button>
+            <!-- Start search icon -->
+            <div class="user-icon hidden md:block">
+              <a href="javascript:;" class="text-white hover:text-primary-900">
+                <svg width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19.5 39.2705C29.9834 39.2705 38.667 30.6055 38.667 20.1035C38.667 9.62012 29.9834 0.936523 19.4814 0.936523C8.99805 0.936523 0.333008 9.62012 0.333008 20.1035C0.333008 30.6055 9.0166 39.2705 19.5 39.2705ZM19.5 26.5049C14.2119 26.5049 10.1299 28.3789 8.18164 30.5498C5.6582 27.8223 4.11816 24.1484 4.11816 20.1035C4.11816 11.5684 10.9463 4.72168 19.4814 4.72168C28.0166 4.72168 34.9004 11.5684 34.9004 20.1035C34.9004 24.1484 33.3604 27.8223 30.8184 30.5498C28.8701 28.3789 24.7881 26.5049 19.5 26.5049ZM19.5 23.4619C23.0996 23.4805 25.8828 20.4189 25.8828 16.4297C25.8828 12.6816 23.0811 9.56445 19.5 9.56445C15.9375 9.56445 13.0986 12.6816 13.1172 16.4297C13.1357 20.4189 15.9189 23.4248 19.5 23.4619Z" fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="mobile-toggle block md:hidden">
+              <button type=button @click="isOpen = !isOpen" class="inline-flex items-center justify-center rounded-md p-2 text-white hover:backdrop-blur-md hover:bg-white/30 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls=mobile-menu aria-expanded=false>
+                <span class=sr-only>Open main menu</span> <!-- Icon when menu is closed --> 
+                <svg class="block h-9 w-9" xmlns=http://www.w3.org/2000/svg fill=none viewBox="0 0 24 24" stroke-width=1.5 stroke=currentColor aria-hidden=true>
+                 <path stroke-linecap=round stroke-linejoin=round d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+               </svg>
+               <!-- Icon when menu is open --> 
+               <svg class="hidden h-9 w-9" xmlns=http://www.w3.org/2000/svg fill=none viewBox="0 0 24 24" stroke-width=2 stroke=currentColor aria-hidden=true>
+                 <path stroke-linecap=round stroke-linejoin=round d="M6 18L18 6M6 6l12 12" />
+               </svg>
+             </button>
+           </div>
+
          </div>
-
-       </div>
-     </nav>
+       </nav>
 
      </div>
 
@@ -108,17 +113,17 @@
     </a>
   </div>
 
-      <!-- Start inner banner -->
-      <section id="studio-hero" class="pb-32 pt-72 md:pt-40 lg:pb-40 lg:pt-48 min-h-[537px] relative p-0">
-        <div class="inner-bg-overlay absolute top-0 left-0 w-full h-full">
-          
-          <picture class="w-full h-full">
-              <source srcset="assets/images/coming-soon-studio-banner-mobile.jpg"
-                      media="(orientation: portrait)">
-              <img src="assets/images/coming-soon-studio-banner.jpg" alt="" class="w-full h-full object-cover">
-          </picture>
-        </div>
-        <!-- container -->
+  <!-- Start inner banner -->
+  <section id="studio-hero" class="pb-32 pt-72 md:pt-40 lg:pb-40 lg:pt-48 min-h-[537px] relative p-0">
+    <div class="inner-bg-overlay absolute top-0 left-0 w-full h-full">
+
+      <picture class="w-full h-full">
+        <source srcset="assets/images/coming-soon-studio-banner-mobile.jpg"
+        media="(orientation: portrait)">
+        <img src="assets/images/coming-soon-studio-banner.jpg" alt="" class="w-full h-full object-cover">
+      </picture>
+    </div>
+    <!-- container -->
           <!-- <div class="container relative z-3">
             <div id="hero-promotion" class="hero-promotion max-w-[790px]">
               <h2 class="title text-white mb-5">35 mins.<br> max results.</h2>
@@ -126,239 +131,238 @@
                 <a href="javascript:;" class="btn-link">LEARN MORE</a></p>
             </div>
           </div> -->
-      </section>
-      <!-- End inner banner -->
+        </section>
+        <!-- End inner banner -->
 
-      <!-- Start CROWS NEST section -->
-      <section id="coming-studio" class="bg-cover pb-0 md:pb-20 pt-0 bg-no-repeat bg-left-bottom" style="background-image:url('./assets/images/crows-nest-bg.jpg')">
-        <!-- container -->
-        <div class="container relative z-2 -mt-40 md:mt-0">
-          <div class="flex flex-wrap md:flex-nowrap -mx-4 ">
-            <!-- columns -->
-            <div class="w-full md:w-1/2 lg:w-7/12 px-4 py-10 md:py-14 lg:pr-20 relative">
-              <div class="absolute -top-4 left-4 bg-pink-900 py-0.5 px-8 uppercase font-semibold text-md">COMING SOON</div>
-              <h1 class="text-2xl md:text-3xl leading-2xl md:leading-3xl md:flex flex-wrap gap-x-5 mb-5 md:mb-7 tracking-normal">CROWS NEST <span class="text-dark-500 text-1xl block normal-case tracking-normal">Sydney</span></h1>
-              <p class="md:text-xl md:leading-1xl">Forget what you know about high intensity workouts and reimagine what you can accomplish in only 35 minutes time. Supreme calorie burn (up to 800 calories in just one class), camaraderie to keep you going, and instructors ready to push you to the next level are what you can expect at SUMHIIT. It's not a gym, it's not a bootcamp workout—it's a revolution in fitness classes that you won't want to miss.</p>
-            </div>
-            <!-- columns -->
-            <div id="form-part" class="form-part w-full md:w-1/2 lg:w-5/12 md:px-4">
-              <div class="bg-white px-5 md:px-6 lg:px-9 py-8 lg:py-12 -mt-5">
-                <div class="text-center text-black mb-8 md:mb-10">
-                  <h2 class="text-1xl md:text-2xl leading-1xl md:leading-2xl mb-3 text-black normal-case font-inter font-bold tracking-normal">Get early access</h2>
-                  <p>Don't miss your opportunity to get in on the ground floor and take advantage of our best pricing, perks, and access with a foundation membership. Sign up to learn more.</p>
+        <!-- Start CROWS NEST section -->
+        <section id="coming-studio" class="bg-cover pb-0 md:pb-20 pt-0 bg-no-repeat bg-left-bottom" style="background-image:url('./assets/images/crows-nest-bg.jpg')">
+          <!-- container -->
+          <div class="container relative z-2 -mt-40 md:mt-0">
+            <div class="flex flex-wrap md:flex-nowrap -mx-4 ">
+              <!-- columns -->
+              <div class="w-full md:w-1/2 lg:w-7/12 px-4 py-10 md:py-14 lg:pr-20 relative">
+                <div class="absolute -top-4 left-4 bg-pink-900 py-0.5 px-8 uppercase font-semibold text-md">COMING SOON</div>
+                <h1 class="text-2xl md:text-3xl leading-2xl md:leading-3xl md:flex flex-wrap gap-x-5 mb-5 md:mb-7 tracking-normal">CROWS NEST <span class="text-dark-500 text-1xl block normal-case tracking-normal">Sydney</span></h1>
+                <p class="md:text-xl md:leading-1xl">Forget what you know about high intensity workouts and reimagine what you can accomplish in only 35 minutes time. Supreme calorie burn (up to 800 calories in just one class), camaraderie to keep you going, and instructors ready to push you to the next level are what you can expect at SUMHIIT. It's not a gym, it's not a bootcamp workout—it's a revolution in fitness classes that you won't want to miss.</p>
+              </div>
+              <!-- columns -->
+              <div id="form-part" class="form-part w-full md:w-1/2 lg:w-5/12 md:px-4">
+                <div class="bg-white px-5 md:px-6 lg:px-9 py-8 lg:py-12 -mt-5">
+                  <div class="text-center text-black mb-8 md:mb-10">
+                    <h2 class="text-1xl md:text-2xl leading-1xl md:leading-2xl mb-3 text-black normal-case font-inter font-bold tracking-normal">Get early access</h2>
+                    <p>Don't miss your opportunity to get in on the ground floor and take advantage of our best pricing, perks, and access with a foundation membership. Sign up to learn more.</p>
+                  </div>
+
+                  <form method="post">
+                    <div class="mb-4 w-full">
+                      <input type="text" placeholder="First Name*" class="form-control" required >
+                    </div>
+                    <div class="mb-4 w-full">
+                      <input type="text" placeholder="Last Name*" class="form-control" required >
+                    </div>
+                    <div class="mb-4 w-full">
+                      <input type="email" placeholder="Email*" class="form-control" required >
+                    </div>
+                    <div class="mb-4 w-full">
+                      <input type="number" placeholder="Phone*" class="form-control" required >
+                    </div>
+                    <div class="mb-6 w-full">
+                      <label class="checkcontainer text-black text-sm cursor-pointer">I agree to the <a href="javascript:;" class="underline hover:no-underline">Terms and Conditions.*</a>
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                    <div>
+                      <button type="submit" class="btn-primary w-full">sign me up</button>
+                    </div>
+                  </form>
                 </div>
-
-                <form method="post">
-                  <div class="mb-4 w-full">
-                    <input type="text" placeholder="First Name*" class="form-control" required >
-                  </div>
-                  <div class="mb-4 w-full">
-                    <input type="text" placeholder="Last Name*" class="form-control" required >
-                  </div>
-                  <div class="mb-4 w-full">
-                    <input type="email" placeholder="Email*" class="form-control" required >
-                  </div>
-                  <div class="mb-4 w-full">
-                    <input type="number" placeholder="Phone*" class="form-control" required >
-                  </div>
-                  <div class="mb-6 w-full">
-                    <label class="checkcontainer text-black text-sm cursor-pointer">I agree to the <a href="javascript:;" class="underline hover:no-underline">Terms and Conditions.*</a>
-                      <input type="checkbox" required>
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                  <div>
-                    <button type="submit" class="btn-primary w-full">sign me up</button>
-                  </div>
-                </form>
               </div>
             </div>
           </div>
-        </div>
 
-      </section>
-      <!-- End CROWS NEST section -->
+        </section>
+        <!-- End CROWS NEST section -->
 
-      <!-- Start office locater  -->
-      <section id="studio-map" class="studio-map-stick p-0 office-locater-one olc-layout" data-studio-list="no" data-json="json/coming-soon-studio.json" data-id="olc_488086" id="olc_488086">
-        <div class="olc-container">
+        <!-- Start office locater  -->
+        <section id="studio-map" class="studio-map-stick p-0 office-locater-one olc-layout" data-studio-list="no" data-json="json/coming-soon-studio.json" data-id="olc_488086" id="olc_488086">
+          <div class="olc-container">
             <div class="office-locater-two olc-col-2">
-                <div class="office-locater-one-left office-panel" id="office-panel"></div>
-                <div class="olc-google-map w-full min-h-[400px] md:min-h-[480px]"></div>
+              <div class="office-locater-one-left office-panel" id="office-panel"></div>
+              <div class="olc-google-map w-full min-h-[400px] md:min-h-[480px]"></div>
             </div>
-        </div>
-      </section>
-    <!-- End office locater  -->
+          </div>
+        </section>
+        <!-- End office locater  -->
 
-      <!-- Start Ride. Lift. Repeat. -->
-      <section id="workout-details" class="relative bg-contain bg-no-repeat bg-right-bottom" style="background-image: url('./assets/images/rectangle-bg.png');">
-        <div class="absolute top-0 left-0">
-          <img src="assets/images/lift-repeat-shape.svg" alt="">
-        </div>
+        <!-- Start Ride. Lift. Repeat. -->
+        <section id="workout-details" class="relative bg-contain bg-no-repeat bg-right-bottom" style="background-image: url('./assets/images/rectangle-bg.png');">
+          <div class="absolute top-0 left-0">
+            <img src="assets/images/lift-repeat-shape.svg" alt="">
+          </div>
+          <!-- container -->
+          <div class="container relative z-2">
+            <!-- section heading -->
+            <div class="heading mb-10 max-w-[450px] lg:max-w-[615px]">
+              <h2>Ride. Lift. Repeat.</h2>
+              <p>Wondering how we’re different from other bootcamp workouts? Let us break it down for you.</p>
+            </div>
+
+            <!-- Ride. Lift. Repeat box -->
+            <div class="workout-detail ride-lift relative min-h-[480px] md:min-h-[550px] grid content-end lg:content-center mb-3">
+              <div class="absolute top-0 left-0 w-full h-full">
+
+                <picture class="w-full h-full">
+                  <source srcset="assets/images/repeat-min-img1-mobile.jpg"
+                  media="(orientation: portrait)">
+                  <img src="assets/images/repeat-min-img1.jpg" alt="" class="w-full h-full object-cover  object-left-top">
+                </picture>
+              </div>
+
+              <div class="p-5 md:p-10 mb-20 lg:mb-0 max-w-[540px] lg:max-w-[400px] relative z-1">
+                <h3 class="font-medium md:font-light text-xl md:text-1xl tracking-[3px] leading-[20px] mb-2 md:leading-1xl"><span class="bg-black p-2 md:p-1 mb-2 md:mb-5 block max-w-fit md:inline-block">1 min</span> CARDI0</h3>
+                <p class="text-md md:text-lg mb-0">Hop on the air bike and give it your all for 60 seconds. The more you push it, the more heart-pumping, calorie burning rewards are yours.</p>
+              </div>
+            </div>
+
+            <!-- Ride. Lift. Repeat box -->
+            <div class="workout-detail relative min-h-[480px] md:min-h-[550px] grid content-end lg:content-center mb-3">
+              <!-- MINs count -->
+              <div class="absolute -top-[90px] lg:-top-[135px] -ml-[90px] md:ml-0 left-2/4 md:left-24 z-2 overflow-hidden bg-black w-[180px] h-[180px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] rounded-full text-center text-white grid content-center">
+                <img src="assets/images/swap-blackbg-blue.gif" alt="arrow" class="mx-auto mt-[-20px] -z-1 -mb-3 md:mb-[-30px] -rotate-90 block max-w-[100px] md:max-w-[200px]">
+                <div class="text-4xl leading-4xl tracking-[5px] font-titling-gothic-fb uppercase font-normal lg:text-[49px] mb-0">35</div>
+                <p class="text-[12px] md:text-md tracking-[5px] uppercase">MINs</p>
+              </div>
+
+              <div class="absolute top-0 left-0 w-full h-full">
+
+                <picture class="w-full h-full">
+                  <source srcset="assets/images/repeat-min-img2-mobile.jpg"
+                  media="(orientation: portrait)">
+                  <img src="assets/images/repeat-min-img2.jpg" alt="" class="w-full h-full object-cover  object-left-top">
+                </picture>
+              </div>
+
+              <div class="p-5 md:p-10 mb-14 lg:mb-0 max-w-[540px] relative z-1">
+                <h3 class="font-medium md:font-light text-xl md:text-1xl tracking-[3px] leading-[20px] mb-2 md:leading-1xl"><span class="bg-black p-2 md:p-1 mb-2 md:mb-5 block max-w-fit md:inline-block">1 min</span> STRENGTH</h3>
+                <p class="text-md md:text-lg mb-0">Next, hop on the floor and power up with a mix of strength-building, muscle-toning weights, kettle bells, TRX, medicine balls and body weight exercises.</p>
+              </div>
+            </div>
+
+            <!-- Ride. Lift. Repeat box -->
+            <div class="workout-detail relative pt-20 min-h-[470px] grid content-end lg:content-center mb-3 overflow-hidden">
+              <!-- MINs count -->
+              <div class="absolute -top-[105px] -ml-[105px] md:ml-0 left-2/4 md:left-24 z-2 overflow-hidden bg-black w-[210px] h-[210px] rounded-full text-center text-white grid content-end">
+
+                <div class="text-4xl leading-4xl tracking-[5px] font-titling-gothic-fb uppercase font-normal mb-0">10</div>
+                <p class="text-[12px] md:text-md tracking-[5px] uppercase">MINs</p>
+              </div>
+
+              <div class="absolute top-0 left-0 w-full h-full">
+                <picture class="w-full h-full">
+                  <source srcset="assets/images/repeat-min-img3-mobile.jpg"
+                  media="(orientation: portrait)">
+                  <img src="assets/images/repeat-min-img3.jpg" alt="" class="w-full h-full object-cover  object-left-top">
+                </picture>
+              </div>
+
+              <div class="p-5 md:p-10 max-w-[450px] relative z-1">
+                <h3 class="core-recovery text-xl md:text-1xl font-medium md:font-light tracking-[3px] mb-2">CORE &<br> RECOVERY</h3>
+                <p class="text-md md:text-lg mb-0">A cool down sounds easy, and we don’t do easy. Instead, you’ll wrap things up with ten minutes of stretching and core work that tightens your abs and clears your mind.</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+        <!-- End Ride. Lift. Repeat. -->
+
+
+      </div>
+      <!-- end main wrapper -->
+
+      <!-- start footer -->
+      <footer id="footer" class="footer-part bg-white py-14 pb-24 md:py-24 text-black">
         <!-- container -->
-        <div class="container relative z-2">
-          <!-- section heading -->
-          <div class="heading mb-10 max-w-[450px] lg:max-w-[615px]">
-            <h2>Ride. Lift. Repeat.</h2>
-            <p>Wondering how we’re different from other bootcamp workouts? Let us break it down for you.</p>
-          </div>
+        <div class="container">
+          <div class="flex flex-wrap md:flex-nowrap -mx-4 gap-5 lg:gap-10">
+            <!-- columns -->
+            <div class="footer-column w-full md:w-1/2 px-4">
+              <div class="mb-10 md:mb-16 lg:pr-12">
+                <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">about us</h6>
+                <p>SUMHIIT Fitness workouts include quick-paced, 1-minute intervals with no downtime during transitions, so you get a nonstop workout that supercharges calorie burn, with 50 minutes of cardio and strength results in just 35 minutes.</p>
 
-          <!-- Ride. Lift. Repeat box -->
-          <div class="workout-detail ride-lift relative min-h-[480px] md:min-h-[550px] grid content-end lg:content-center mb-3">
-            <div class="absolute top-0 left-0 w-full h-full">
-            
-              <picture class="w-full h-full">
-                <source srcset="assets/images/repeat-min-img1-mobile.jpg"
-                        media="(orientation: portrait)">
-                <img src="assets/images/repeat-min-img1.jpg" alt="" class="w-full h-full object-cover  object-left-top">
-            </picture>
+                <ul class="mt-16 hidden md:flex gap-5 social-icon order-1 md:order-1">
+                  <li><a href="javascript:;"><i class="fa-brands fa-twitter"></i></a></li>
+                  <li><a href="javascript:;"><i class="fa-brands fa-instagram"></i></a></li>
+                  <li><a href="javascript:;"><i class="fa-brands fa-facebook-f"></i></a></li>
+                </ul>
+              </div>
             </div>
+            <!-- columns -->
+            <div class="footer-column text-center md:text-left w-full md:w-1/6 px-4 order-3 md:order-2">
+              <div class="mb-10 md:mb-16">
+                <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">COMPANY</h6>
 
-            <div class="p-5 md:p-10 mb-20 lg:mb-0 max-w-[540px] lg:max-w-[400px] relative z-1">
-              <h3 class="font-medium md:font-light text-xl md:text-1xl tracking-[3px] leading-[20px] mb-2 md:leading-1xl"><span class="bg-black p-2 md:p-1 mb-2 md:mb-5 block max-w-fit md:inline-block">1 min</span> CARDI0</h3>
-              <p class="text-md md:text-lg mb-0">Hop on the air bike and give it your all for 60 seconds. The more you push it, the more heart-pumping, calorie burning rewards are yours.</p>
+                <ul class="footer-menu">
+                  <li class="mb-1"><a href="javascript:;">News</a></li>
+                  <li class="mb-1"><a href="javascript:;">Employment</a></li>
+                  <li class="mb-1"><a href="javascript:;">The Workout</a></li>
+                  <li class="mb-1"><a href="javascript:;">Find a Studio</a></li>
+                  <li class="mb-1"><a href="javascript:;">Membership</a></li>
+                </ul>
+
+                <ul class="mt-16 flex md:hidden justify-center gap-5 social-icon order-1 md:order-1">
+                  <li><a href="javascript:;"><i class="fa-brands fa-twitter"></i></a></li>
+                  <li><a href="javascript:;"><i class="fa-brands fa-instagram"></i></a></li>
+                  <li><a href="javascript:;"><i class="fa-brands fa-facebook-f"></i></a></li>
+                </ul>
+              </div>
             </div>
-          </div>
+            <!-- columns -->
+            <div class="footer-column w-full md:w-2/6 px-4 order-2 md:order-3">
+              <div class="mb-10 md:mb-16">
+                <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">sumhiit APP</h6>
+                <p>Join a studio, earn points, and track your class count! View class schedules and book with ease. Track your progress and stay motivated to keep crushing your goals.</p>
 
-          <!-- Ride. Lift. Repeat box -->
-          <div class="workout-detail relative min-h-[480px] md:min-h-[550px] grid content-end lg:content-center mb-3">
-            <!-- MINs count -->
-            <div class="absolute -top-[90px] lg:-top-[135px] -ml-[90px] md:ml-0 left-2/4 md:left-24 z-2 overflow-hidden bg-black w-[180px] h-[180px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] rounded-full text-center text-white grid content-center">
-              <img src="assets/images/swap-blackbg-blue.gif" alt="arrow" class="mx-auto mt-[-20px] -z-1 -mb-3 md:mb-[-30px] -rotate-90 block max-w-[100px] md:max-w-[200px]">
-              <div class="text-4xl leading-4xl tracking-[5px] font-titling-gothic-fb uppercase font-normal lg:text-[49px] mb-0">35</div>
-              <p class="text-[12px] md:text-md tracking-[5px] uppercase">MINs</p>
-            </div>
-
-            <div class="absolute top-0 left-0 w-full h-full">
-              
-              <picture class="w-full h-full">
-                <source srcset="assets/images/repeat-min-img2-mobile.jpg"
-                        media="(orientation: portrait)">
-                <img src="assets/images/repeat-min-img2.jpg" alt="" class="w-full h-full object-cover  object-left-top">
-            </picture>
-            </div>
-
-            <div class="p-5 md:p-10 mb-14 lg:mb-0 max-w-[540px] relative z-1">
-              <h3 class="font-medium md:font-light text-xl md:text-1xl tracking-[3px] leading-[20px] mb-2 md:leading-1xl"><span class="bg-black p-2 md:p-1 mb-2 md:mb-5 block max-w-fit md:inline-block">1 min</span> STRENGTH</h3>
-              <p class="text-md md:text-lg mb-0">Next, hop on the floor and power up with a mix of strength-building, muscle-toning weights, kettle bells, TRX, medicine balls and body weight exercises.</p>
-            </div>
-          </div>
-
-          <!-- Ride. Lift. Repeat box -->
-          <div class="workout-detail relative pt-20 min-h-[470px] grid content-end lg:content-center mb-3 overflow-hidden">
-            <!-- MINs count -->
-            <div class="absolute -top-[105px] -ml-[105px] md:ml-0 left-2/4 md:left-24 z-2 overflow-hidden bg-black w-[210px] h-[210px] rounded-full text-center text-white grid content-end">
-
-              <div class="text-4xl leading-4xl tracking-[5px] font-titling-gothic-fb uppercase font-normal mb-0">10</div>
-              <p class="text-[12px] md:text-md tracking-[5px] uppercase">MINs</p>
-            </div>
-
-            <div class="absolute top-0 left-0 w-full h-full">
-              <picture class="w-full h-full">
-                <source srcset="assets/images/repeat-min-img3-mobile.jpg"
-                        media="(orientation: portrait)">
-                <img src="assets/images/repeat-min-img3.jpg" alt="" class="w-full h-full object-cover  object-left-top">
-            </picture>
-            </div>
-
-            <div class="p-5 md:p-10 max-w-[450px] relative z-1">
-              <h3 class="core-recovery text-xl md:text-1xl font-medium md:font-light tracking-[3px] mb-2">CORE &<br> RECOVERY</h3>
-              <p class="text-md md:text-lg mb-0">A cool down sounds easy, and we don’t do easy. Instead, you’ll wrap things up with ten minutes of stretching and core work that tightens your abs and clears your mind.</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-      <!-- End Ride. Lift. Repeat. -->
-
-
-    </div>
-    <!-- end main wrapper -->
-
-    <!-- start footer -->
-    <footer id="footer" class="footer-part bg-white py-14 pb-24 md:py-24 text-black">
-      <!-- container -->
-      <div class="container">
-        <div class="flex flex-wrap md:flex-nowrap -mx-4 gap-5 lg:gap-10">
-          <!-- columns -->
-          <div class="footer-column w-full md:w-1/2 px-4">
-            <div class="mb-10 md:mb-16 lg:pr-12">
-              <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">about us</h6>
-              <p>SUMHIIT Fitness workouts include quick-paced, 1-minute intervals with no downtime during transitions, so you get a nonstop workout that supercharges calorie burn, with 50 minutes of cardio and strength results in just 35 minutes.</p>
-
-              <ul class="mt-16 hidden md:flex gap-5 social-icon order-1 md:order-1">
-                <li><a href="javascript:;"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="javascript:;"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="javascript:;"><i class="fa-brands fa-facebook-f"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- columns -->
-          <div class="footer-column text-center md:text-left w-full md:w-1/6 px-4 order-3 md:order-2">
-            <div class="mb-10 md:mb-16">
-              <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">COMPANY</h6>
-
-              <ul class="footer-menu">
-                <li class="mb-1"><a href="javascript:;">News</a></li>
-                <li class="mb-1"><a href="javascript:;">Employment</a></li>
-                <li class="mb-1"><a href="javascript:;">The Workout</a></li>
-                <li class="mb-1"><a href="javascript:;">Find a Studio</a></li>
-                <li class="mb-1"><a href="javascript:;">Membership</a></li>
-              </ul>
-
-              <ul class="mt-16 flex md:hidden justify-center gap-5 social-icon order-1 md:order-1">
-                <li><a href="javascript:;"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="javascript:;"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="javascript:;"><i class="fa-brands fa-facebook-f"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- columns -->
-          <div class="footer-column w-full md:w-2/6 px-4 order-2 md:order-3">
-            <div class="mb-10 md:mb-16">
-              <h6 class="font-inter text-md mb-4 text-black font-bold leading-[19px]">sumhiit APP</h6>
-              <p>Join a studio, earn points, and track your class count! View class schedules and book with ease. Track your progress and stay motivated to keep crushing your goals.</p>
-
-              <div class="flex gap-4">
-                <a href="javascript:;"><img src="assets/images/apple-app-store.png" alt="apple app store" width="100"></a>
-                <a href="javascript:;"><img src="assets/images/google-play-store.png" alt="google app store" width="105"></a>
+                <div class="flex gap-4">
+                  <a href="javascript:;"><img src="assets/images/apple-app-store.png" alt="apple app store" width="100"></a>
+                  <a href="javascript:;"><img src="assets/images/google-play-store.png" alt="google app store" width="105"></a>
+                </div>
               </div>
             </div>
           </div>
+
+          <div class="md:border-t md:border-b text-center lg:text-left lg:flex items-center justify-between border-dark-400 py-9 md:mb-12">
+            <!-- footer bottom menu -->
+            <ul class="md:flex items-center flex-wrap justify-center lg:justify-start gap-4 lg:gap-7 text-[12px] text-dark-500">
+              <li class="mb-2 md:mb-0"><a href="privacy-policy.html" class="underline hover:text-black hover:no-underline">Privacy Policy</a></li>
+              <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Accessibility Statement</a></li>
+              <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Terms of Service</a></li>
+              <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">DMCA Policy</a></li>
+              <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Privacy Notice for California Residents</a></li>
+            </ul>
+            <!-- copy right text -->
+            <p class="mt-20 md:mt-3 lg:m-0 text-[12px] text-dark-500">Ⓒ Basecamp Fitness 2022</p>
+          </div>
+
+          <div class="text-center flex justify-center ">
+            <a href="javascript:;"><img src="assets/images/seb-logo-black.svg" alt="google app store" width="158"></a>
+          </div>
         </div>
+      </footer>
+      <!-- end footer -->
+    </div>
 
-        <div class="md:border-t md:border-b text-center lg:text-left lg:flex items-center justify-between border-dark-400 py-9 md:mb-12">
-          <!-- footer bottom menu -->
-          <ul class="md:flex items-center flex-wrap justify-center lg:justify-start gap-4 lg:gap-7 text-[12px] text-dark-500">
-            <li class="mb-2 md:mb-0"><a href="privacy-policy.html" class="underline hover:text-black hover:no-underline">Privacy Policy</a></li>
-            <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Accessibility Statement</a></li>
-            <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Terms of Service</a></li>
-            <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">DMCA Policy</a></li>
-            <li class="mb-2 md:mb-0"><a href="javascript:;" class="underline hover:text-black hover:no-underline">Privacy Notice for California Residents</a></li>
-          </ul>
-          <!-- copy right text -->
-          <p class="mt-20 md:mt-3 lg:m-0 text-[12px] text-dark-500">Ⓒ Basecamp Fitness 2022</p>
-        </div>
+    <!-- Custom Libraries script js start -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- swiper bundle min js file -->
+    <script src="./assets/js/swiper-bundle.min.js"></script>
+    <!-- alpine min js file -->
+    <script src="./assets/js/alpine.min.js"></script>
+    <!-- map custom js file -->
+    <script src="./assets/js/map-custom.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=ofcMpInitialize&key=AIzaSyDpuRwe-OrevcZjBMSCCb-eClEoi3ovMgw&libraries=places&sensor=false" ></script>
 
-        <div class="text-center flex justify-center ">
-          <a href="javascript:;"><img src="assets/images/seb-logo-black.svg" alt="google app store" width="158"></a>
-        </div>
-      </div>
-    </footer>
-    <!-- end footer -->
-  </div>
 
-  <!-- Custom Libraries script js start -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-  <!-- swiper bundle min js file -->
-  <script src="./assets/js/swiper-bundle.min.js"></script>
-  <!-- alpine min js file -->
-  <script src="./assets/js/alpine.min.js"></script>
-  <!-- map custom js file -->
-  <script src="./assets/js/map-custom.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?callback=ofcMpInitialize&key=AIzaSyDpuRwe-OrevcZjBMSCCb-eClEoi3ovMgw&libraries=places&sensor=false" ></script>
-  <!-- Custom js file -->
-  <script src="./assets/js/custom.js"></script>
-
-</body>
-</html>
+  </body>
+  </html>

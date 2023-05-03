@@ -114,17 +114,22 @@
   }
 </script>
 </head>
-<body>
+<body  x-data="{headerScroll: true}">
   <div class="text-md lg:text-lg leading-normal text-white font-normal font-inter antialiased bg-black">
 
     <!-- start-header -->
-    <header id="header" class="header-part fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : true, marginOffset : 0 }">
+    <header id="header" class="header-part fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : false, marginOffset : 0, headerXl: true, headerScroll: true }" x-init="showBar = (window.pageYOffset > 20) ? true : false, headerScroll = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
+ + document.querySelector('#studio-map').clientHeight 
+ ) ? false : true"
+      @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
      <div x-ref=spacer class="absolute h-3 md:h-9 lg:h-12"></div>
-     <div class="header-h h-3 md:h-9 lg:h-12" :style="marginOffset > 0 ? 'height: ' + ($refs.spacer.getBoundingClientRect().height - marginOffset >= 0 ? $refs.spacer.getBoundingClientRect().height - marginOffset : 0) + 'px' : ''"></div>
+     <div x-data="{ headerXl: true }" x-init="headerXl = (window.pageYOffset > 20) ? false : true" @scroll.window="headerXl = (window.pageYOffset > 20) ? false : true" :class="headerXl ? 'h-3 md:h-9 lg:h-12' : 'h-0 md:h-0 lg:h-0'"></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 bg-black/50 md:bg-white/10 -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="md:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 backdrop-blur-md -z-20 shadow-lg" :class="isOpen ? 'h-screen w-screen' : ''" x-show="isOpen || showBar" x-cloak class=md:hidden x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <!-- start header main navigation -->
-     <div id="navigation" class=main-navigation py-7 @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
+     <div id="navigation" @scroll.window="headerScroll = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
+ + document.querySelector('#studio-map').clientHeight 
+ ) ? false : true" :class="headerScroll ? 'main-navigation' : 'main-navigation stick'" @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
       <!-- container -->
       <div class="container">
         <!-- hade nav -->
@@ -268,7 +273,7 @@
                   <div class="absolute -top-4 left-2/4 whitespace-nowrap -translate-x-2/4 bg-pink-900 py-0.5 px-8 uppercase font-semibold text-md">LIMITED OFFER</div>
                   <form method="post">
 
-                    <div class="relative overflow-hidden pb-14 w-screen h-full h-[565px] bg-white" x-data="{ currentSlide: 1, pauseSlide : false }" x-init="window.setInterval(() => { if(pauseSlide == false) {(currentSlide == 2) ? currentSlide = 1 : currentSlide++; }}, 600000)">
+                    <div class="relative overflow-hidden pb-14 w-screen h-[565px] bg-white" x-data="{ currentSlide: 1, pauseSlide : false }" x-init="window.setInterval(() => { if(pauseSlide == false) {(currentSlide == 2) ? currentSlide = 1 : currentSlide++; }}, 600000)">
                       <!-- Slides Container -->
                       <div class=flex>
                         <div x-show="currentSlide == 1" class="absolute bg-white min-w-full h-full" :class="currentSlide == 1 ? 'z-10' : ''" x-transition:enter="transition ease-out duration-1000" x-transition:enter-start="transform -translate-x-[100%]" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-1000" x-transition:leave-start="opacity-100 transform" x-transition:leave-end="transform">
@@ -347,7 +352,7 @@
                           <div class="px-1">
 
                             <div class="text-center text-black mb-8 md:mb-10">
-                              <h2 class="mb-3 text-black normal-case font-inter font-bold tracking-normal">Get early access</h2>
+                               <h2 class="text-1xl md:text-2xl leading-1xl md:leading-2xl mb-3 text-black normal-case font-inter font-bold tracking-normal">Get early access</h2>
                               <p>Don't miss your opportunity to get in on the ground floor and take advantage of our best pricing, perks, and access with a foundation membership. Sign up to learn more.</p>
                             </div>
 
@@ -428,7 +433,7 @@
             <!-- Ride. Lift. Repeat box -->
             <div class="workout-detail ride-lift relative min-h-[480px] md:min-h-[550px] grid content-end lg:content-center mb-3">
               <div class="absolute top-0 left-0 w-full h-full">
-                
+
                 <picture class="w-full h-full">
                   <source srcset="assets/images/repeat-min-img1-mobile.jpg"
                   media="(orientation: portrait)">
@@ -452,7 +457,7 @@
               </div>
 
               <div class="absolute top-0 left-0 w-full h-full">
-                
+
                 <picture class="w-full h-full">
                   <source srcset="assets/images/repeat-min-img2-mobile.jpg"
                   media="(orientation: portrait)">
@@ -490,7 +495,7 @@
             </div>
 
           </div>
-          
+
           <div id="studio-amenities" class="mt-20">
             <!-- section heading -->
             <div class="heading mb-12">
@@ -639,7 +644,7 @@
                     <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-5 leading-4 bg-white/10">
                       LOWER BODY
                     </div>
-                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">Sa</div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">Su</div>
                   </div>
                 </div>
 
@@ -696,7 +701,7 @@
       <section id="studio-promotion" class="bg-overlay relative min-h-[620px] md:min-h-[570px] grid content-end md:content-center">
 
         <div class="absolute top-0 left-0 w-full h-full">
-          
+
           <picture class="w-full h-full">
             <source srcset="assets/images/lets-do-ths-bg-mobile.jpg"
             media="(orientation: portrait)">
@@ -768,7 +773,7 @@
             </div>
             <!-- columns -->
             <div class="w-full md:w-3/5 px-4 lg:pl-8">
-              
+
               <form>
                 <div class="sign-up-form">
                   <div class="flex flex-wrap -mx-2 lg:pr-48">
@@ -794,7 +799,7 @@
                   </div>
                 </div>
               </form>
-              
+
             </div>
           </div>
         </div>
@@ -917,8 +922,7 @@
   <!-- map custom js file -->
   <script src="./assets/js/map-custom.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?callback=ofcMpInitialize&key=AIzaSyDpuRwe-OrevcZjBMSCCb-eClEoi3ovMgw&libraries=places&sensor=false" ></script>
-  <!-- Custom js file -->
-  <script src="./assets/js/custom.js"></script>
+  
 
 </body>
 </html>

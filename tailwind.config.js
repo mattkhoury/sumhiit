@@ -54,6 +54,7 @@ module.exports = {
                 
             },
             lineHeight: {
+                'xl': '26px',
                 '1xl': '29px',
                 '2xl': '34px',
                 '3xl': '36px',

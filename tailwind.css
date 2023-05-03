@@ -156,24 +156,24 @@
        @apply hidden
     }
 
-    .hero-section .swiper .swiper-slide .sub-title {
+    .hero-section .swiper-slide .sub-title {
         @apply relative top-8 transition-all duration-200 delay-200 opacity-0
     }
 
-    .hero-section .swiper .swiper-slide h1{
+    .hero-section .swiper-slide h1{
         @apply relative top-10 transition-all duration-300 delay-300 opacity-0
     }
-    .hero-section .swiper .swiper-slide .des{
+    .hero-section .swiper-slide .des{
         @apply relative top-12 transition-all duration-500 delay-500 opacity-0
     }
-    .hero-section .swiper .swiper-slide .get-started{
+    .hero-section .swiper-slide .get-started{
         @apply relative top-14 transition-all duration-700 delay-700 opacity-0
     }
 
-    .hero-section .swiper .swiper-slide.swiper-slide-active .sub-title,
-    .hero-section .swiper .swiper-slide.swiper-slide-active h1,
-    .hero-section .swiper .swiper-slide.swiper-slide-active .des,
-    .hero-section .swiper .swiper-slide.swiper-slide-active .get-started{
+    .hero-section .swiper-slide.swiper-slide-active .sub-title,
+    .hero-section .swiper-slide.swiper-slide-active h1,
+    .hero-section .swiper-slide.swiper-slide-active .des,
+    .hero-section .swiper-slide.swiper-slide-active .get-started{
         @apply top-0 opacity-100
     }
     .swiper-pagination .swiper-pagination-bullet{
@@ -311,17 +311,28 @@
     .studio-cms-section a:hover{
         @apply text-white;
     }
+    .studio-cms-section h2,.studio-cms-section h3,
+    .studio-cms-section h4,.studio-cms-section h5,
+    .studio-cms-section h6{
+         @apply mt-8 mb-5
+    }
+    .studio-cms-section ol{
+        @apply mb-5 pl-8 list-decimal
+    }
+    .studio-cms-section ul{
+        @apply mb-5 pl-8 list-disc
+    }
     .studio-cms-section h1 {
         @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 tracking-[2px] sm:tracking-[5px]
     }
     .studio-cms-section h2 {
-        @apply text-2xl md:text-3xl leading-2xl md:leading-3xl
-    }
-    .studio-cms-section h3 {
         @apply text-1xl md:text-2xl leading-1xl md:leading-2xl
     }
+    .studio-cms-section h3 {
+        @apply text-1xl md:text-1xl leading-1xl md:leading-1xl
+    }
     .studio-cms-section h4 {
-        @apply text-xl md:text-1xl md:leading-1xl
+        @apply text-lg md:text-xl md:leading-xl
     }
 
     @media (min-width: 768px){ 
