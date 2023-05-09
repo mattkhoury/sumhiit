@@ -18,8 +18,6 @@
  <!-- Fonts style file -->
  <link rel="stylesheet" href="assets/css/all-fontawesome.min.css">
 
- <!-- swiper bundle min css file -->
- <link rel="stylesheet" type="text/css" href="./assets/css/swiper-bundle.min.css">
  <!-- Custom style file -->
  <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
 
@@ -839,7 +837,6 @@
 
   </div>
   <!-- end main wrapper -->
-  <style>.gm-style .gm-style-iw-c{border-radius:0;}.office-locater-one-title{color:#E80088;}.address-one-list p a:hover{color:#E80088;}.gm-ui-hover-effect{top: 0 !important;right: 1px !important;}.olc-google-map .gm-style,.olc-google-map .gm-style>div + div{z-index: inherit;} .olc-result-cnt{bottom: 0;left: 0;background: #222222;margin-top: 20px;font-size: 12px;padding: 5px 10px;line-height: normal;}.open-text{color:#0824F5;}.opening-text{color:#3CC13B;}.coming-text{color:#F3BB1C;} .wc-soon{display: flex;align-items: center;}.wc-soon:after{content:'•'; color:#fff; margin:0 5px; } .office-locater-one-left{height: calc(100% - 140px);}.olc-address-list::-webkit-scrollbar{width: 5px;}.olc-address-list::-webkit-scrollbar-thumb{background-color: #111111;} .olc-address-list{overflow-y: auto;} .mile-count{top:16px; right:2px;} .mile-count .fa{margin-left: 5px;font-weight: 300;font-size: 16px;vertical-align: middle;} .olc-address-list{counter-reset: list-number;border-color:#111111; } .studio-location{border-bottom: 1px solid #111;} .studio-location h6 {position: relative;padding-left: 25px;}.studio-location h6:before{display: inline-block;content: counter(list-number) ;counter-increment: list-number;width: 16px; height: 16px; position:absolute; top:1px; left:0; background:#E80088;border-radius: 100px;font-size: 10px;line-height: 9px;display: flex;align-items: center;justify-content:center; }</style>
   <!-- start footer -->
   <footer id="footer" class="footer-part bg-white py-14 pb-24 md:py-24 text-black">
     <!-- container -->
@@ -913,295 +910,291 @@
   <!-- end footer -->
 </div>
 
-<!-- Custom Libraries script js start -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<!-- swiper bundle min js file -->
-<script src="./assets/js/swiper-bundle.min.js"></script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="./assets/js/alpine.min.js"></script>
 
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpuRwe-OrevcZjBMSCCb-eClEoi3ovMgw&callback=ofcMpInitialize&v=weekly"
-    defer
-    ></script>
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpuRwe-OrevcZjBMSCCb-eClEoi3ovMgw&callback=ofcMpInitialize&v=weekly"
+defer
+></script>
 
-    <script>
+<script>
 
       /* Google Map with Alpine JS */
 
-      let map;
-      let activeWindow = null;
+  let map;
+  let activeWindow = null;
 
       /* Get Stores */
 
-      function getStores() {
-        return {
-          storeData: [],
-          s_flag: 0,
-          sr_cnt: true,
-          get filteredStores() {
-            this.s_flag = false;
-            return this.storeData;
-          }
-        };
+  function getStores() {
+    return {
+      storeData: [],
+      s_flag: 0,
+      sr_cnt: true,
+      get filteredStores() {
+        this.s_flag = false;
+        return this.storeData;
       }
+    };
+  }
 
       /* Get Load Map with Alpine JS */
 
-      document.addEventListener('alpine:init', () => {
-        Alpine.data('app', () => ({
-          init() {
-            if("google" in window) this.doMapStuff();                     
-          },
-          stores:[],
-          doMapStuff() {         
-            fetch('json/opening-soon-studio.json')
-            .then(res => res.json())
-            .then(data => {
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('app', () => ({
+      init() {
+        if("google" in window) this.doMapStuff();                     
+      },
+      stores:[],
+      doMapStuff() {         
+        fetch('json/opening-soon-studio.json')
+        .then(res => res.json())
+        .then(data => {
 
-              data.forEach(store_data => {  
-                let office_key  = store_data.office_id;
-                let location_html = "<div class=\"office-locater-one-box office-locater-box py-4 md:py-7 px-2 md:px-8 \" id=\"office-locator-box-"+store_data.office_id+"\" data-office-id=\""+store_data.office_id+"\">\r\n\t\t\t\t\
-                <span class=\"office-locater-one-title text-black uppercase font-bold block mb-3\">"+store_data.office_title+"</span><h6 class=\"office-locater-contact text-md mb-2 text-black\">"+store_data.office_name+"</h6>\
-                <div class=\"office-locater-one-address text-md text-dark-500\"><div class=\"address-one-list\">\
-                <span></span><p class=\" mb-3 text-md text-dark-500 leading-5\">"+store_data.office_address+"<br>"+store_data.office_address_2+"</p></div>\
-                <div class=\"address-one-list text-md text-dark-500\"><span></span><p class=\" mb-2 text-md text-dark-500 leading-5\"><a href=\"tel:"+store_data.office_phone+"\" class=\" focus:outline-none hover:text-pink-900\">"+store_data.office_phone+"</a></p></div>\
-                <div class=\"address-one-list text-md text-dark-500\"><span></span><p class=\" mb-2 text-md text-dark-500 leading-5\"><a href=\"mailto:"+store_data.office_email+"\" class=\" focus:outline-none hover:text-pink-900\">"+store_data.office_email+"</a></p>\
-                </div></div></div>";
-                store_data.location_html = location_html;
+          data.forEach(store_data => {  
+            let office_key  = store_data.office_id;
+            let location_html = "<div class=\"office-locater-one-box office-locater-box py-4 md:py-7 px-2 md:px-8 \" id=\"office-locator-box-"+store_data.office_id+"\" data-office-id=\""+store_data.office_id+"\">\r\n\t\t\t\t\
+            <span class=\"office-locater-one-title text-black uppercase font-bold block mb-3\">"+store_data.office_title+"</span><h6 class=\"office-locater-contact text-md mb-2 text-black\">"+store_data.office_name+"</h6>\
+            <div class=\"office-locater-one-address text-md text-dark-500\"><div class=\"address-one-list\">\
+            <span></span><p class=\" mb-3 text-md text-dark-500 leading-5\">"+store_data.office_address+"<br>"+store_data.office_address_2+"</p></div>\
+            <div class=\"address-one-list text-md text-dark-500\"><span></span><p class=\" mb-2 text-md text-dark-500 leading-5\"><a href=\"tel:"+store_data.office_phone+"\" class=\" focus:outline-none hover:text-pink-900\">"+store_data.office_phone+"</a></p></div>\
+            <div class=\"address-one-list text-md text-dark-500\"><span></span><p class=\" mb-2 text-md text-dark-500 leading-5\"><a href=\"mailto:"+store_data.office_email+"\" class=\" focus:outline-none hover:text-pink-900\">"+store_data.office_email+"</a></p>\
+            </div></div></div>";
+            store_data.location_html = location_html;
 
-                const olc_marker_icon = {
-                  url: 'assets/images/pin.svg',
-                  scaledSize: new google.maps.Size(38, 38),
-                  origin: new google.maps.Point(0, 0),
-                  anchor: new google.maps.Point(0, 0)
-                };
+            const olc_marker_icon = {
+              url: 'assets/images/pin.svg',
+              scaledSize: new google.maps.Size(38, 38),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(0, 0)
+            };
 
-                const infowindow = new google.maps.InfoWindow({
-                  content: store_data.location_html.replace( 'office-locater-box', 'olc-store' ),
-                  ariaLabel: "Uluru",
-                });
-                const marker = new google.maps.Marker({
-                  position: { lat: parseFloat(store_data.office_latitude), lng: parseFloat(store_data.office_longitude) },
-                  map: map,
-                  icon: olc_marker_icon
-                });
+            const infowindow = new google.maps.InfoWindow({
+              content: store_data.location_html.replace( 'office-locater-box', 'olc-store' ),
+              ariaLabel: "Uluru",
+            });
+            const marker = new google.maps.Marker({
+              position: { lat: parseFloat(store_data.office_latitude), lng: parseFloat(store_data.office_longitude) },
+              map: map,
+              icon: olc_marker_icon
+            });
 
-                store_data.marker = marker;
-                store_data.infowindow = infowindow;
+            store_data.marker = marker;
+            store_data.infowindow = infowindow;
 
-                marker.addListener("click", () => {             
-                  if( activeWindow != null ){ activeWindow.close(); }
-                  infowindow.open({
-                    anchor: marker,
-                    map,
-                  });
-                  activeWindow = infowindow;
-                });     
-                infowindow.open({
-                    anchor: marker,
-                    map,
-                  });
-                this.stores[store_data.office_id] = store_data;
+            marker.addListener("click", () => {             
+              if( activeWindow != null ){ activeWindow.close(); }
+              infowindow.open({
+                anchor: marker,
+                map,
               });
-            });   
+              activeWindow = infowindow;
+            });     
+            infowindow.open({
+              anchor: marker,
+              map,
+            });
+            this.stores[store_data.office_id] = store_data;
+          });
+        });   
 
-          },
-        }))
-      });
+      },
+    }))
+  });
 
       /* Initialize Google Map  */
 
-      function ofcMpInitialize() {  
+  function ofcMpInitialize() {  
 
-        let styleArr = [
-        {
-          "elementType": "geometry",
-          "stylers": [
-          {
-            "color": "#f5f5f5"
-          }
-          ]
-        },
-        {
-          "elementType": "labels.icon",
-          "stylers": [
-          {
-            "visibility": "off"
-          }
-          ]
-        },
-        {
-          "elementType": "labels.text",
-          "stylers": [
-          {
-            "visibility": "off"
-          }
-          ]
-        },
-        {
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-            "color": "#616161"
-          }
-          ]
-        },
-        {
-          "elementType": "labels.text.stroke",
-          "stylers": [
-          {
-            "color": "#f5f5f5"
-          }
-          ]
-        },
-        {
-          "featureType": "administrative.land_parcel",
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-            "color": "#bdbdbd"
-          }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "geometry",
-          "stylers": [
-          {
-            "color": "#eeeeee"
-          }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-            "color": "#757575"
-          }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "geometry",
-          "stylers": [
-          {
-            "color": "#e5e5e5"
-          }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-            "color": "#9e9e9e"
-          }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry",
-          "stylers": [
-          {
-            "color": "#ffffff"
-          }
-          ]
-        },
-        {
-          "featureType": "road.arterial",
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-            "color": "#757575"
-          }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry",
-          "stylers": [
-          {
-            "color": "#dadada"
-          }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-            "color": "#616161"
-          }
-          ]
-        },
-        {
-          "featureType": "road.local",
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-            "color": "#9e9e9e"
-          }
-          ]
-        },
-        {
-          "featureType": "transit.line",
-          "elementType": "geometry",
-          "stylers": [
-          {
-            "color": "#e5e5e5"
-          }
-          ]
-        },
-        {
-          "featureType": "transit.station",
-          "elementType": "geometry",
-          "stylers": [
-          {
-            "color": "#eeeeee"
-          }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "geometry",
-          "stylers": [
-          {
-            "color": "#c9c9c9"
-          }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "labels.text.fill",
-          "stylers": [
-          {
-            "color": "#9e9e9e"
-          }
-          ]
-        }
-        ];
-
-        map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 14,
-          center: { lat: -33.7695574, lng:  151.2730721 },
-          mapTypeControl: false,
-          mapTypeId: 'roadmap',
-          zoomControl : false,
-          streetViewControl : false,    
-          scrollwheel: true,   
-          fullscreenControl : false
-        });
-        map.setOptions({
-          styles: styleArr
-        });
-        window.dispatchEvent(new Event('map-loaded'));
+    let styleArr = [
+    {
+      "elementType": "geometry",
+      "stylers": [
+      {
+        "color": "#f5f5f5"
       }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+      {
+        "visibility": "off"
+      }
+      ]
+    },
+    {
+      "elementType": "labels.text",
+      "stylers": [
+      {
+        "visibility": "off"
+      }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+      {
+        "color": "#616161"
+      }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "elementType": "labels.text.fill",
+      "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+      {
+        "color": "#757575"
+      }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [
+      {
+        "color": "#ffffff"
+      }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "labels.text.fill",
+      "stylers": [
+      {
+        "color": "#757575"
+      }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+      {
+        "color": "#dadada"
+      }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [
+      {
+        "color": "#616161"
+      }
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+      ]
+    },
+    {
+      "featureType": "transit.line",
+      "elementType": "geometry",
+      "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+      ]
+    },
+    {
+      "featureType": "transit.station",
+      "elementType": "geometry",
+      "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+      {
+        "color": "#c9c9c9"
+      }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+      ]
+    }
+    ];
+
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: { lat: -33.7695574, lng:  151.2730721 },
+      mapTypeControl: false,
+      mapTypeId: 'roadmap',
+      zoomControl : false,
+      streetViewControl : false,    
+      scrollwheel: true,   
+      fullscreenControl : false
+    });
+    map.setOptions({
+      styles: styleArr
+    });
+    window.dispatchEvent(new Event('map-loaded'));
+  }
 
       /* Google Map with Alpine JS */
 
-    </script>
+</script>
 
 
 </body>
