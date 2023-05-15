@@ -51,44 +51,44 @@
     }
 
     h1,h2,h3,h4,h5,h6 {
-        @apply font-titling-gothic-fb uppercase font-medium text-white mb-5 md:mb-7
+        @apply font-titling-gothic-fb uppercase font-medium text-white mb-5 md:mb-7;
     }
     
     h1 {
-        @apply text-3xl lg:text-4xl xl:text-6xl leading-3xl lg:leading-4xl xl:leading-6xl font-medium mb-3 tracking-[3px] xl:tracking-[5px]
+        @apply text-3xl lg:text-4xl xl:text-6xl leading-3xl lg:leading-4xl xl:leading-6xl font-medium mb-3 tracking-[3px] xl:tracking-[5px];
     }
     h2 {
-        @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 tracking-[2px] sm:tracking-[5px]
+        @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 tracking-[2px] sm:tracking-[5px];
     }
     h3 {
-        @apply text-2xl md:text-3xl leading-2xl md:leading-3xl
+        @apply text-2xl md:text-3xl leading-2xl md:leading-3xl;
     }
     h4 {
-        @apply text-1xl md:text-2xl leading-1xl md:leading-2xl
+        @apply text-1xl md:text-2xl leading-1xl md:leading-2xl;
     }
     h5 {
-        @apply text-xl md:text-1xl md:leading-1xl
+        @apply text-xl md:text-1xl md:leading-1xl;
     }
     h6 {
-        @apply text-lg
+        @apply text-lg;
     }
     .title {
-       @apply text-2xl md:text-3xl lg:text-4xl xl:text-6xl leading-2xl md:leading-3xl lg:leading-4xl xl:leading-6xl text-white font-medium tracking-[3px] xl:tracking-[5px]
+       @apply text-2xl md:text-3xl lg:text-4xl xl:text-6xl leading-2xl md:leading-3xl lg:leading-4xl xl:leading-6xl text-white font-medium tracking-[3px] xl:tracking-[5px];
     }
 
     .border-color{
-        @apply border-white
+        @apply border-white;
     }
 
     h2.des,
     p{
-        @apply font-inter text-md md:text-lg font-normal mb-4
+        @apply font-inter text-md md:text-lg font-normal mb-4;
     }
     h2.des{
-        @apply normal-case tracking-normal mb-11
+        @apply normal-case tracking-normal mb-11;
     }
     section {
-        @apply py-10 md:py-20
+        @apply py-10 md:py-20;
     }
     .btn-link{
         @apply uppercase font-bold underline hover:no-underline;
@@ -118,63 +118,63 @@
         opacity: 0.66;
     }
     .logo-dark{
-        @apply hidden
+        @apply hidden;
     }
     .main-navigation.stick .logo-light{
-        @apply hidden
+        @apply hidden;
     }
     .main-navigation.stick .logo-dark{
-        @apply block
+        @apply block;
     }
     .main-navigation.stick .menu li a{
-        @apply text-black
+        @apply text-black;
     }
     .main-navigation.stick .menu li a::before{
-        @apply bg-black
+        @apply bg-black;
     }
     .main-navigation.stick .user-icon a{
-        @apply text-black
+        @apply text-black;
     }
     .main-navigation.stick .menu li.menu-btn a:hover{
-        @apply bg-pink-900 text-white
+        @apply bg-pink-900 text-white;
     }
 
 
     .header-part.header-bar.show .header-h{
-        @apply h-3 md:h-9 lg:h-12
+        @apply h-3 md:h-9 lg:h-12;
     }
     .header-part.show .header-h{
-        @apply h-0
+        @apply h-0;
     }
     .header-part.header-bar.show.open .header-h{
-        @apply h-0
+        @apply h-0;
     }
     .header-part.show.open .header-h{
-        @apply h-3 md:h-9 lg:h-12
+        @apply h-3 md:h-9 lg:h-12;
     }
     .header-bar .header-bar{
-       @apply hidden
+       @apply hidden;
     }
 
     .hero-section .slider .sub-title {
-        @apply relative top-8 transition-all duration-200 delay-700 opacity-0
+        @apply relative top-8 transition-all duration-200 delay-700 opacity-0;
     }
 
     .hero-section .slider h1{
-        @apply relative top-10 transition-all duration-300 delay-700 opacity-0
+        @apply relative top-10 transition-all duration-300 delay-700 opacity-0;
     }
     .hero-section .slider .des{
-        @apply relative top-12 transition-all duration-500 delay-700 opacity-0
+        @apply relative top-12 transition-all duration-500 delay-700 opacity-0;
     }
     .hero-section .slider .get-started{
-        @apply relative top-14 transition-all duration-700 delay-700 opacity-0
+        @apply relative top-14 transition-all duration-700 delay-700 opacity-0;
     }
 
     .hero-section .slider.active .sub-title,
     .hero-section .slider.active h1,
     .hero-section .slider.active .des,
     .hero-section .slider.active .get-started{
-        @apply top-0 opacity-100
+        @apply top-0 opacity-100;
     }
 
 
@@ -187,13 +187,13 @@
         transform: matrix(1, 0, 0, -1, 0, 0);
     }
     .heading h2{
-        @apply mb-6
+        @apply mb-6;
     }
     .heading p{
-        @apply text-lg md:text-xl
+        @apply text-lg md:text-xl;
     }
     .footer .footer-column p{
-        @apply text-md lg:text-lg leading-6
+        @apply text-md lg:text-lg leading-6;
     }
     .footer-menu li a{
         @apply hover:text-primary-900;
@@ -203,43 +203,43 @@
     }
 
     .mobile-toggle a{
-        @apply w-[24px] block
+        @apply w-[24px] block;
     }
     .mobile-toggle a span{
-        @apply w-full h-[1px] block my-[5px] bg-white
+        @apply w-full h-[1px] block my-[5px] bg-white;
     }
     .form-control{
         @apply border border-black py-3 px-4 w-full text-black text-sm focus:outline-0;
     }
     .form-control::-webkit-input-placeholder { 
-      @apply text-black
+      @apply text-black;
     }
     .form-control::-moz-placeholder { 
-      @apply text-black
+      @apply text-black;
     }
     .form-control:-ms-input-placeholder {
-      @apply text-black
+      @apply text-black;
     }
     .form-control:-moz-placeholder { 
-      @apply text-black
+      @apply text-black;
     }
     .checkcontainer{
-       @apply pl-8 relative
+       @apply pl-8 relative;
     }
     .checkcontainer input{
-        @apply absolute opacity-0
+        @apply absolute opacity-0;
     }
     .checkcontainer .checkmark{
-        @apply absolute top-0 left-0 p-1 w-[20px] h-[20px] border border-primary-900 before:bg-primary-900
+        @apply absolute top-0 left-0 p-1 w-[20px] h-[20px] border border-primary-900 before:bg-primary-900;
     }
     .checkcontainer .checkmark:before{
-        @apply w-full h-full bg-primary-900 hidden
+        @apply w-full h-full bg-primary-900 hidden;
     }
     .checkcontainer input:checked ~ .checkmark:before{
-        @apply block
+        @apply block;
     }
     .grand-opening-box:before{
-        @apply hidden md:block absolute -top-40 left-0 w-[110%] h-[600px] -z-1
+        @apply hidden md:block absolute -top-40 left-0 w-[110%] h-[600px] -z-1;
     }
     .grand-opening-box:before{
         content: '';
@@ -249,56 +249,56 @@
         filter: blur(42px);
     }
     .office-locater-one-address{
-        @apply text-black
+        @apply text-black;
     }
     .form-container form{
-        @apply flex overflow-hidden
+        @apply flex overflow-hidden;
     }
     .form-container form .form-page{
         flex: 1 0 100%;
         transition: transform 0.3s;
     }
     .pagination .bar-circle{
-        @apply rounded-full mx-4 w-3 h-3 relative
+        @apply rounded-full mx-4 w-3 h-3 relative;
     }
     .pagination .bar-circle.active{
-        @apply bg-black
+        @apply bg-black;
     }
     .pagination .bar-circle:before{
-        @apply w-[20px] h-[1px] bg-dark-400 absolute top-[5px] right-[17px]
+        @apply w-[20px] h-[1px] bg-dark-400 absolute top-[5px] right-[17px];
     }
     .pagination .bar-circle:first-child:before{
-        @apply hidden
+        @apply hidden;
     }
     .sign-up-form .form-control{
-        @apply bg-transparent border-white text-white
+        @apply bg-transparent border-white text-white;
     }
     .sign-up-form .form-control::-webkit-input-placeholder { 
-      @apply text-white
+      @apply text-white;
     }
     .sign-up-form .form-control::-moz-placeholder { 
-      @apply text-white
+      @apply text-white;
     }
     .sign-up-form .form-control:-ms-input-placeholder {
-      @apply text-white
+      @apply text-white;
     }
     .sign-up-form .form-control:-moz-placeholder { 
-      @apply text-white
+      @apply text-white;
     }
     .sign-up-form .checkcontainer .checkmark{
-       @apply border-white
+       @apply border-white;
     }
    .sign-up-form .checkcontainer input:checked ~ .checkmark{
-        @apply border-primary-900
+        @apply border-primary-900;
     }
     .sign-up-section{
         background-position:left  bottom -160px;
     }
     .studio-amenity{
-        @apply border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px]
+        @apply border border-white p-5 lg:p-12 flex items-center gap-5 min-h-[90px];
     }
     .studio-location {
-        @apply border-b border-dark-200
+        @apply border-b border-dark-200;
     }
     .olc-location-search-input:focus{
         outline: outset 1px;
@@ -315,22 +315,33 @@
          @apply mt-8 mb-5
     }
     .studio-cms-section ol{
-        @apply mb-5 pl-8 list-decimal
+        @apply mb-5 pl-8 list-decimal;
     }
     .studio-cms-section ul{
-        @apply mb-5 pl-8 list-disc
+        @apply mb-5 pl-8 list-disc;
     }
     .studio-cms-section h1 {
-        @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 tracking-[2px] sm:tracking-[5px]
+        @apply text-1xl sm:text-2xl md:text-3xl lg:text-4xl leading-2xl md:leading-3xl lg:leading-5xl mb-3 tracking-[2px] sm:tracking-[5px];
     }
     .studio-cms-section h2 {
-        @apply text-1xl md:text-2xl leading-1xl md:leading-2xl
+        @apply text-1xl md:text-2xl leading-1xl md:leading-2xl break-words;
     }
     .studio-cms-section h3 {
-        @apply text-1xl md:text-1xl leading-1xl md:leading-1xl
+        @apply text-1xl md:text-1xl leading-1xl md:leading-1xl;
     }
     .studio-cms-section h4 {
-        @apply text-lg md:text-xl md:leading-xl
+        @apply text-lg md:text-xl md:leading-xl;
+    }
+
+    .table{
+      @apply border border-white my-8 min-w-[550px];  
+    }
+    .table tr td,
+    .table tr th{
+        @apply border border-white py-2 px-5 text-left;  
+    }
+    .table tr th.text_center{
+        @apply text-center;
     }
 
     .gm-style .gm-style-iw-c{border-radius:0;}.office-locater-one-title{color:#E80088;}.address-one-list p a:hover{color:#E80088;}.gm-ui-hover-effect{top: 0 !important;right: 1px !important;}.olc-google-map .gm-style,.olc-google-map .gm-style>div + div{z-index: inherit;} .olc-result-cnt{bottom: 0;left: 0;background: #222222;margin-top: 20px;font-size: 12px;padding: 5px 10px;line-height: normal;}.open-text{color:#0824F5;}.opening-text{color:#3CC13B;}.coming-text{color:#F3BB1C;} .wc-soon{display: flex;align-items: center;}.wc-soon:after{content:'•'; color:#fff; margin:0 5px; } .office-locater-one-left{height: calc(100% - 140px);}.olc-address-list::-webkit-scrollbar{width: 5px;}.olc-address-list::-webkit-scrollbar-thumb{background-color: #111111;} .olc-address-list{overflow-y: auto;} .mile-count{top:16px; right:2px;} .mile-count .fa{margin-left: 5px;font-weight: 300;font-size: 16px;vertical-align: middle;} .olc-address-list{counter-reset: list-number;border-color:#111111; } .studio-location{border-bottom: 1px solid #111;} .studio-location h6 {position: relative;padding-left: 25px;}.studio-location h6:before{display: inline-block;content: counter(list-number) ;counter-increment: list-number;width: 16px; height: 16px; position:absolute; top:1px; left:0; background:#E80088;border-radius: 100px;font-size: 10px;line-height: 9px;display: flex;align-items: center;justify-content:center; }
@@ -352,7 +363,7 @@
         }
 
         h5.core-recovery {
-            @apply text-2xl leading-2xl
+            @apply text-2xl leading-2xl;
         }
 
         .inner-bg-overlay:after{
@@ -380,15 +391,15 @@
         }
 
         h5.core-recovery {
-            @apply text-1xl leading-1xl
+            @apply text-1xl leading-1xl;
         }
     }
     @media (max-width: 366px){ 
         h2{
-           @apply text-xl leading-8 
+           @apply text-xl leading-8 ;
         }
         h3{
-           @apply text-lg leading-6 
+           @apply text-lg leading-6 ;
         }
         h5,
         h4{

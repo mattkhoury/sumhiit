@@ -16,21 +16,19 @@
 
 
 </head>
-<body x-data="{headerScroll: true}">
+<body x-data="{headerScroll: true,headerScrollMap:false}">
   <div class="text-md lg:text-lg leading-normal text-white font-normal font-inter antialiased bg-black">
 
     <!-- start-header -->
-    <header id="header" class="header-part fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : false, marginOffset : 0, headerXl: true, headerScroll: true }" x-init="showBar = (window.pageYOffset > 20) ? true : false, headerScroll = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
-     + document.querySelector('#studio-map').clientHeight 
-     ) ? false : true"
+    <header id="header" class="header-part fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : false, marginOffset : 0, headerXl: true, headerScroll: true }" x-init="showBar = (window.pageYOffset > 20) ? true : false"
      @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
      <div x-ref=spacer class="absolute h-3 md:h-9 lg:h-12"></div>
      <div x-data="{ headerXl: true }" x-init="headerXl = (window.pageYOffset > 20) ? false : true" @scroll.window="headerXl = (window.pageYOffset > 20) ? false : true" :class="headerXl ? 'h-3 md:h-9 lg:h-12' : 'h-0 md:h-0 lg:h-0'"></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 bg-black/50 md:bg-white/10 -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="md:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 backdrop-blur-md -z-20 shadow-lg" :class="isOpen ? 'h-screen w-screen' : ''" x-show="isOpen || showBar" x-cloak class=md:hidden x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <!-- start header main navigation -->
-     <div id="navigation" @scroll.window="headerScroll = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
-       + document.querySelector('#studio-map').clientHeight 
+     <div id="navigation" @scroll.window="headerScroll = (  window.pageYOffset >= (document.querySelector('.light-section.active').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('.light-section.active').offsetTop - document.querySelector('#header').clientHeight)
+       + document.querySelector('.light-section.active').clientHeight 
        ) ? false : true" :class="headerScroll ? 'main-navigation' : 'main-navigation stick'"  @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
        <!-- container -->
        <div class="container">
@@ -182,7 +180,9 @@
         <!-- End CROWS NEST section -->
 
         <!-- Start office locater  -->
-        <section x-init="storeData = await (await fetch('json/coming-soon-studio.json')).json()"  x-data="app" @map-loaded.window="doMapStuff()"  id="studio-map" class="studio-map-stick p-0 office-locater-one olc-layout" data-studio-list="no" data-json="json/coming-soon-studio.json" data-id="olc_488086" id="olc_488086">
+        <section x-init="storeData = await (await fetch('json/coming-soon-studio.json')).json()"  x-data="app" @scroll.window="headerScrollMap = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
+ + document.querySelector('#studio-map').clientHeight 
+ ) ? false : true" :class="headerScrollMap ? 'light-section not-active' : 'light-section active'"  @map-loaded.window="doMapStuff()"  id="studio-map" class="studio-map-stick p-0 office-locater-one olc-layout" data-studio-list="no" data-json="json/coming-soon-studio.json" data-id="olc_488086" id="olc_488086">
           <div class="olc-container">
             <div class="office-locater-two olc-col-2">
               <div class="office-locater-one-left office-panel" id="office-panel"></div>
@@ -276,6 +276,8 @@
 
       </div>
       <!-- end main wrapper -->
+
+      
       <!-- start footer -->
       <footer id="footer" class="footer-part bg-white py-14 pb-24 md:py-24 text-black">
         <!-- container -->
