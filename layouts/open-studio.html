@@ -112,19 +112,21 @@
   }
 </script>
 </head>
-<body  x-data="{headerScroll: true,headerScrollMap:false}">
+<body  x-data="{headerScroll: true}">
   <div class="text-md lg:text-lg leading-normal text-white font-normal font-inter antialiased bg-black">
 
     <!-- start-header -->
-    <header id="header" class="header-part fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : false, marginOffset : 0, headerXl: true, headerScroll: true }" x-init="showBar = (window.pageYOffset > 20) ? true : false"
+    <header id="header" class="header-part fixed top-0 py-3 left-0 w-full z-10" x-data="{ isOpen: false, showBar : false, marginOffset : 0, headerXl: true, headerScroll: true }" x-init="showBar = (window.pageYOffset > 20) ? true : false, headerScroll = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
+ + document.querySelector('#studio-map').clientHeight 
+ ) ? false : true"
       @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
      <div x-ref=spacer class="absolute h-3 md:h-9 lg:h-12"></div>
      <div x-data="{ headerXl: true }" x-init="headerXl = (window.pageYOffset > 20) ? false : true" @scroll.window="headerXl = (window.pageYOffset > 20) ? false : true" :class="headerXl ? 'h-3 md:h-9 lg:h-12' : 'h-0 md:h-0 lg:h-0'"></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 bg-black/50 md:bg-white/10 -z-30" :class="isOpen ? 'h-screen w-screen' : ''" @scroll.window="marginOffset = window.pageYOffset" x-show="isOpen || showBar" x-cloak class="md:hidden" x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <div class="header-bar absolute top-0 right-0 bottom-0 left-0 backdrop-blur-md -z-20 shadow-lg" :class="isOpen ? 'h-screen w-screen' : ''" x-show="isOpen || showBar" x-cloak class=md:hidden x-transition:enter="transition ease-out duration-500" x-transition:enter-start=opacity-0 x-transition:enter-end=opacity-100 x-transition:leave="transition ease-in duration-500" x-transition:leave-start=opacity-100 x-transition:leave-end=opacity-0></div>
      <!-- start header main navigation -->
-     <div id="navigation" @scroll.window="headerScroll = ( window.pageYOffset >= (document.querySelector('.light-section.active').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('.light-section.active').offsetTop - document.querySelector('#header').clientHeight)
- + document.querySelector('.light-section.active').clientHeight 
+     <div id="navigation" @scroll.window="headerScroll = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
+ + document.querySelector('#studio-map').clientHeight 
  ) ? false : true" :class="headerScroll ? 'main-navigation' : 'main-navigation stick'" @scroll.window="showBar = (window.pageYOffset > 20) ? true : false">
       <!-- container -->
       <div class="container">
@@ -393,9 +395,7 @@
       <!-- End CROWS NEST section -->
 
       <!-- Start office locater  -->
-      <section  x-init="storeData = await (await fetch('json/open-studio.json')).json()" x-data="app" @map-loaded.window="doMapStuff()"  id="studio-map" @scroll.window="headerScrollMap = (  window.pageYOffset >= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#studio-map').offsetTop - document.querySelector('#header').clientHeight)
- + document.querySelector('#studio-map').clientHeight 
- ) ? false : true" :class="headerScrollMap ? 'light-section not-active' : 'light-section active'"  class="studio-map-stick p-0 office-locater-one olc-layout" data-json="json/open-studio.json" data-studio-list="no" data-id="olc_488086" id="olc_488086">
+      <section x-init="storeData = await (await fetch('json/open-studio.json')).json()"  x-data="app" @map-loaded.window="doMapStuff()"  id="studio-map" class="studio-map-stick p-0 office-locater-one olc-layout" data-json="json/open-studio.json" data-studio-list="no" data-id="olc_488086" id="olc_488086">
         <div class="olc-container">
           <div class="office-locater-two olc-col-2">
             <div class="office-locater-one-left office-panel" id="office-panel"></div>
@@ -531,8 +531,8 @@
             </div>
 
             <!-- CLass hours date -->
-            <div class="grid grid-cols-5 gap-2 sm:gap-5">
-              <div class="col-span-2">
+            <div class="grid grid-cols-7 gap-2 sm:gap-5">
+              <div class="col-span-2 hidden">
                 <div class="class-details flex gap-2 sm:gap-4 mb-5">
                   <div class="bg-black border w-full border-1 text-center">
                     <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-2 xl:px-5 leading-4 bg-white/10">
@@ -562,7 +562,7 @@
 
                 <div class="class-hours bg-primary-900 min-h-[195px] grid content-center py-5 px-8 sm:px-16 relative mb-1">
                   <div class="absolute top-0 -left-9 sm:-left-4 text-white text-lg font-semibold uppercase leading-7 text-center -rotate-90 w-[114px] top-2/4 -translate-y-2/4">Morning</div>
-                  <ul class="text-[13px] sm:text-[19px] text-white leading-8 text-center whitespace-nowrap">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center whitespace-nowrap">
                     <li>5:00 AM</li>
                     <li>6:00 AM</li>
                     <li>7:00 AM</li>
@@ -572,25 +572,97 @@
                 </div>
                 <div class="class-hours bg-primary-900/50 min-h-[195px] grid content-center py-5 px-8 sm:px-16 relative mb-1">
                   <div class="absolute top-0 -left-9 sm:-left-4 text-white/60 text-lg font-semibold uppercase leading-7 text-center -rotate-90 w-[114px] top-2/4 -translate-y-2/4">afternoon</div>
-                  <ul class="text-[13px] sm:text-[19px] text-white leading-8 text-center whitespace-nowrap">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center whitespace-nowrap">
                     <li>12:30 PM</li>
                     <li>4:30 PM</li>
                     <li>5:30 PM</li>
                   </ul>
                 </div>
               </div>
+
               <div class="">
                 <div class="class-details flex gap-4 mb-5">
                   <div class="bg-black border w-full border-1 text-center">
-                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-5 leading-4 bg-white/10">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-3 leading-4 bg-white/10">
+                      FULL BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">M</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="">
+                <div class="class-details flex gap-4 mb-5">
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-3 leading-4 bg-white/10">
+                      UPPER BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">T</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="">
+                <div class="class-details flex gap-4 mb-5">
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-3 leading-4 bg-white/10">
+                      LOWER BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">W</div>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <div class="class-details flex gap-4 mb-5">
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-3 leading-4 bg-white/10">
+                      FULL BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">T</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="">
+                <div class="class-details flex gap-4 mb-5">
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-3 leading-4 bg-white/10">
                       CORE & CARDIO
                     </div>
                     <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">F</div>
                   </div>
                 </div>
+              </div>
+              <div class="">
+                <div class="class-details flex gap-4 mb-5">
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-3 leading-4 bg-white/10">
+                      UPPER BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">Sa</div>
+                  </div>
+                </div>
 
-                <div class="class-hours bg-primary-900 min-h-[195px] grid content-center py-5 px-2 sm:px-5 lg:px-10 relative mb-1">
-                  <ul class="text-[13px] sm:text-[19px] text-white leading-8 text-center">
+              </div>
+              <div class="">
+                <div class="class-details flex gap-4 mb-5">
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-3 leading-4 bg-white/10">
+                      LOWER BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">Su</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-7 gap-2 sm:gap-5">
+
+              <div class="mb-1">
+                <div class="class-hours bg-primary-900 min-h-[195px] grid py-5 px-1 sm:px-1 lg:px-2 relative mb-1 h-full">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
                     <li>5:00 <span class="hidden sm:inline-block">AM</span></li>
                     <li>6:00 <span class="hidden sm:inline-block">AM</span></li>
                     <li>7:00 <span class="hidden sm:inline-block">AM</span></li>
@@ -598,59 +670,177 @@
                     <li>9:00 <span class="hidden sm:inline-block">AM</span></li>
                   </ul>
                 </div>
-                <div class="class-hours bg-primary-900/50 py-5 px-2 sm:px-5 lg:px-10 relative mb-1">
-                  <ul class="text-[13px] sm:text-[19px] text-white leading-8 text-center">
-                    <li>12:30 <span class="hidden sm:inline-block">PM</span></li>
-                    <li>1:30 <span class="hidden sm:inline-block">PM</span></li>
+              </div>
+
+              <div class="mb-1">
+                <div class="class-hours bg-primary-900 min-h-[195px] grid py-5 px-1 sm:px-1 lg:px-2 relative mb-1 h-full">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>5:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>6:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>7:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>8:00 <span class="hidden sm:inline-block">AM</span></li>
                   </ul>
                 </div>
               </div>
-              <div class="">
-                <div class="class-details flex gap-4 mb-5">
-                  <div class="bg-black border w-full border-1 text-center">
-                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-5 leading-4 bg-white/10">
-                      UPPER BODY
-                    </div>
-                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">Sa</div>
-                  </div>
-                </div>
 
-                <div class="class-hours bg-primary-900 min-h-[195px] grid content-center py-5 px-2 sm:px-5 lg:px-10 relative mb-1">
-                  <ul class="text-[13px] sm:text-[19px] text-white leading-8 text-center">
+              <div class="mb-1">
+                <div class="class-hours bg-primary-900 min-h-[195px] grid py-5 px-1 sm:px-1 lg:px-2 relative mb-1 h-full">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>5:00 <span class="hidden sm:inline-block">AM</span></li>
                     <li>6:00 <span class="hidden sm:inline-block">AM</span></li>
                     <li>7:00 <span class="hidden sm:inline-block">AM</span></li>
                     <li>8:00 <span class="hidden sm:inline-block">AM</span></li>
                     <li>9:00 <span class="hidden sm:inline-block">AM</span></li>
                   </ul>
                 </div>
-                <div class="class-hours bg-primary-900/50 py-5 px-2 sm:px-5 lg:px-10 relative mb-1">
-                  <ul class="text-[13px] sm:text-[19px] text-white leading-8 text-center">
-                    <li>12:30 <span class="hidden sm:inline-block">PM</span></li>
+              </div>
+              <div class="mb-1">
+                <div class="class-hours bg-primary-900 min-h-[195px] grid py-5 px-1 sm:px-1 lg:px-2 relative mb-1 h-full">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>5:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>6:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>7:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>8:30 <span class="hidden sm:inline-block">AM</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mb-1">
+                <div class="class-hours bg-primary-900 min-h-[195px] grid py-5 px-1 sm:px-1 lg:px-2 relative mb-1 h-full">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>5:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>6:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>7:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>8:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>9:00 <span class="hidden sm:inline-block">AM</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mb-1">
+                <div class="class-hours bg-primary-900 min-h-[195px] grid py-5 px-1 sm:px-1 lg:px-2 relative mb-1 h-full">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>5:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>6:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>7:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>8:30 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>9:30 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>10:30 <span class="hidden sm:inline-block">AM</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mb-1">
+                <div class="class-hours bg-primary-900 min-h-[195px] grid py-5 px-1 sm:px-1 lg:px-2 relative mb-1 h-full">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>5:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>6:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>7:00 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>8:30 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>9:30 <span class="hidden sm:inline-block">AM</span></li>
+                    <li>10:30 <span class="hidden sm:inline-block">AM</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-7 gap-2 sm:gap-5">
+              <div class="col-span-2 hidden">
+                <div class="class-details flex gap-2 sm:gap-4 mb-5">
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-2 xl:px-5 leading-4 bg-white/10">
+                      FULL BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-0 sm:px-2">M</div>
+                  </div>
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-2 xl:px-5 leading-4 bg-white/10">
+                      UPPER BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-0 sm:px-2">T</div>
+                  </div>
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-2 xl:px-5 leading-4 bg-white/10">
+                      LOWER BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-0 sm:px-2">W</div>
+                  </div>
+                  <div class="bg-black border w-full border-1 text-center">
+                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-2 xl:px-5 leading-4 bg-white/10">
+                      FULL BODY
+                    </div>
+                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-0 sm:px-2">T</div>
+                  </div>
+                </div>
+
+                <div class="class-hours bg-primary-900 min-h-[195px] grid content-center py-5 px-8 sm:px-16 relative mb-1">
+                  <div class="absolute top-0 -left-9 sm:-left-4 text-white text-lg font-semibold uppercase leading-7 text-center -rotate-90 w-[114px] top-2/4 -translate-y-2/4">Morning</div>
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center whitespace-nowrap">
+                    <li>5:00 AM</li>
+                    <li>6:00 AM</li>
+                    <li>7:00 AM</li>
+                    <li>8:00 AM</li>
+                    <li>9:00 AM</li>
+                  </ul>
+                </div>
+                <div class="class-hours bg-primary-900/50 min-h-[195px] grid content-center py-5 px-8 sm:px-16 relative mb-1">
+                  <div class="absolute top-0 -left-9 sm:-left-4 text-white/60 text-lg font-semibold uppercase leading-7 text-center -rotate-90 w-[114px] top-2/4 -translate-y-2/4">afternoon</div>
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center whitespace-nowrap">
+                    <li>12:30 PM</li>
+                    <li>4:30 PM</li>
+                    <li>5:30 PM</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="">
+                <div class="class-hours bg-primary-900/50 py-5 px-1 sm:px-1 lg:px-2 relative mb-1">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>12:00 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>4:30 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>5:30 <span class="hidden sm:inline-block">PM</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="">
+                <div class="class-hours bg-primary-900/50 py-5 px-1 sm:px-1 lg:px-2 relative mb-1">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>12:00 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>4:30 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>5:30 <span class="hidden sm:inline-block">PM</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="">
+                <div class="class-hours bg-primary-900/50 py-5 px-1 sm:px-1 lg:px-2 relative mb-1">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>12:00 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>4:30 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>5:30 <span class="hidden sm:inline-block">PM</span></li>
                   </ul>
                 </div>
               </div>
               <div class="">
-                <div class="class-details flex gap-4 mb-5">
-                  <div class="bg-black border w-full border-1 text-center">
-                    <div class="h-[70px] hidden md:flex items-center justify-center text-[10px] lg:text-[13px] uppercase tracking-[2px] py-1 px-5 leading-4 bg-white/10">
-                      LOWER BODY
-                    </div>
-                    <div class="h-[55px] flex items-center justify-center text-sm sm:text-xl text-dark-400 uppercase tracking-[2px] py-1 px-2">Su</div>
-                  </div>
-                </div>
-
-                <div class="class-hours bg-primary-900 min-h-[195px] grid content-center py-5 px-2 sm:px-5 lg:px-10 relative mb-1">
-                  <ul class="text-[13px] sm:text-[19px] text-white leading-8 text-center">
-                    <li>7:00 <span class="hidden sm:inline-block">AM</span></li>
-                    <li>8:00 <span class="hidden sm:inline-block">AM</span></li>
-                    <li>9:00 <span class="hidden sm:inline-block">AM</span></li>
-                    <li>11:00 <span class="hidden sm:inline-block">AM</span></li>
+                <div class="class-hours bg-primary-900/50 py-5 px-1 sm:px-1 lg:px-2 relative mb-1">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>12:00 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>4:30 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>5:30 <span class="hidden sm:inline-block">PM</span></li>
                   </ul>
                 </div>
               </div>
 
-
+              <div class="">
+                <div class="class-hours bg-primary-900/50 py-5 px-1 sm:px-1 lg:px-2 relative mb-1">
+                  <ul class="text-[13px] sm:text-[13px] md:text-[15px] lg:text-[19px] text-white leading-8 text-center">
+                    <li>12:00 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>4:30 <span class="hidden sm:inline-block">PM</span></li>
+                    <li>5:30 <span class="hidden sm:inline-block">PM</span></li>
+                  </ul>
+                </div>
+              </div>
             </div>
+
           </div>
 
           <div id="class-instructors" class="mt-20 overflow-hidden">
@@ -687,17 +877,6 @@
       </section>
       <!-- End STUDIO AMENITIES -->
 
-      <!-- Start office locater  -->
-      <section class="min-h-[600px] studio-map-stick p-0 bg-white" x-data="{headerScrollLight2: true}" @scroll.window="headerScrollLight2 = (  window.pageYOffset >= (document.querySelector('#section2-light').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#section2-light').offsetTop - document.querySelector('#header').clientHeight)
- + document.querySelector('#section2-light').clientHeight 
- ) ? false : true" :class="headerScrollLight2 ? 'light-section not-active' : 'light-section active'" id="section2-light" >
-    
-      </section>
-
-
-       
-      <!-- End office locater  -->
-     
 
       <!-- Start JOIN THE HUSTLE -->
       <section id="studio-promotion" class="bg-overlay relative min-h-[620px] md:min-h-[570px] grid content-end md:content-center">
@@ -721,17 +900,6 @@
         </div>
       </section>
       <!-- End JOIN THE HUSTLE -->
-
-       <!-- Start office locater  -->
-      <section class="min-h-[600px] studio-map-stick p-0 bg-white" x-data="{headerScrollLight3: true}" @scroll.window="headerScrollLight3 = (  window.pageYOffset >= (document.querySelector('#section3-light').offsetTop - document.querySelector('#header').clientHeight)  && window.pageYOffset <= (document.querySelector('#section3-light').offsetTop - document.querySelector('#header').clientHeight)
- + document.querySelector('#section3-light').clientHeight 
- ) ? false : true" :class="headerScrollLight3 ? 'light-section not-active' : 'light-section active'"  id="section3-light" >
-    
-      </section>
-
-
-      <!-- End office locater  -->
-
 
       <!-- Start explore foundation memberships -->
       <section id="studio-membership-info" class="relative">
