@@ -223,6 +223,12 @@
     .form-control:-moz-placeholder { 
       @apply text-black
     }
+    input[type=number].form-control::-webkit-inner-spin-button, 
+    input[type=number].form-control::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
     .checkcontainer{
        @apply pl-8 relative
     }
@@ -334,6 +340,122 @@
     }
 
     .gm-style .gm-style-iw-c{border-radius:0;}.office-locater-one-title{color:#E80088;}.address-one-list p a:hover{color:#E80088;}.gm-ui-hover-effect{top: 0 !important;right: 1px !important;}.olc-google-map .gm-style,.olc-google-map .gm-style>div + div{z-index: inherit;} .olc-result-cnt{bottom: 0;left: 0;background: #222222;margin-top: 20px;font-size: 12px;padding: 5px 10px;line-height: normal;}.open-text{color:#0824F5;}.opening-text{color:#3CC13B;}.coming-text{color:#F3BB1C;} .wc-soon{display: flex;align-items: center;}.wc-soon:after{content:'•'; color:#fff; margin:0 5px; } .office-locater-one-left{height: calc(100% - 140px);}.olc-address-list::-webkit-scrollbar{width: 5px;}.olc-address-list::-webkit-scrollbar-thumb{background-color: #111111;} .olc-address-list{overflow-y: auto;} .mile-count{top:16px; right:2px;} .mile-count .fa{margin-left: 5px;font-weight: 300;font-size: 16px;vertical-align: middle;} .olc-address-list{counter-reset: list-number;border-color:#111111; } .studio-location{border-bottom: 1px solid #111;} .studio-location h6 {position: relative;padding-left: 25px;}.studio-location h6:before{display: inline-block;content: counter(list-number) ;counter-increment: list-number;width: 16px; height: 16px; position:absolute; top:1px; left:0; background:#E80088;border-radius: 100px;font-size: 10px;line-height: 9px;display: flex;align-items: center;justify-content:center; }
+
+    .account-form .label-title{
+        @apply text-sm sm:text-md tracking-wider text-dark-800 font-normal mb-2 block ml-2
+    }
+    .account-form .form-control{
+        @apply bg-transparent border border-dark-500 py-3 md:py-4 rounded-xl text-md tracking-wider text-white font-normal mb-2 block
+    }
+    .account-form .form-control:hover,
+    .account-form .form-control:focus{
+        @apply border-primary-900
+    }
+    .account-form .checkcontainer .checkmark{
+        @apply border-dark-500
+    }
+    .account-form .radio-btn{
+        @apply pl-0
+    }
+    .account-form .checkcontainer input:checked ~ .checkmark{
+        @apply border-white
+    }
+    .account-form .checkcontainer input:checked ~ .checkmark:before {
+        @apply bg-white
+    }
+    .account-form .checkcontainer input[type="radio"]{
+        @apply absolute opacity-0
+    }
+    .account-form .checkcontainer .radiobtn{
+        @apply cursor-pointer hover:border-primary-900 hover:bg-primary-900
+    }
+    .account-form .checkcontainer input:checked ~  .radiobtn{
+        @apply border-primary-900 bg-primary-900
+    }
+    .trial-title{
+        text-shadow: 1px 0 #565656, -1px 0 #565656, 0 1px #565656, 0 -1px #565656, 1px 1px #565656, -1px -1px #565656, 1px -1px #565656, -1px 1px #565656;
+    }
+    html{
+        scroll-behavior: smooth;
+    }
+    .account-form .form-control.input-error,.account-form .form-control.input-error+.checkmark {
+      @apply border-[#f00]
+    }
+    .top-gradient-one, .top-gradient-two,.right-gradient-one,.right-gradient-two,
+    .bottom-gradient-one,.bottom-gradient-two, .bottom-gradient-three, .left-gradient-one, .left-gradient-two, .left-gradient-three{
+        @apply relative before:absolute
+    }
+
+    .top-gradient-one:before{
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(177.43deg, rgba(0, 0, 0, 0) -0.92%, #1F042A 50.11%, #000000 97.14%), linear-gradient(96.65deg, #0922D4 2.67%, #08189C 48.94%, #CD005C 92.23%);
+    }
+    .top-gradient-two:before{
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(2.04deg, #000000 1.5%, #000000 31.69%, #000000 59.28%, #030730 76.14%, rgba(0, 0, 0, 0) 95.6%), linear-gradient(91.94deg, #0E2635 0.52%, #001BE1 15.7%, #2A2CA8 54.18%, #991876 79.84%, #200704 96.72%);
+    }
+    .right-gradient-one:before{
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(277.75deg, rgba(0, 0, 0, 0) 4.42%, #1F042A 24.26%, #000000 95.58%), linear-gradient(223.1deg, #220E60 -12.26%, #1B116C 5.3%, #3C21FF 27.27%, #20117A 49.49%, #110F66 63.93%);
+    }
+    .right-gradient-two:before{
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(84.82deg, #000000 3.37%, #000000 32.47%, #000000 59.07%, #030730 75.32%, rgba(0, 0, 0, 0) 94.08%), linear-gradient(195.84deg, #102FFE 0.86%, #061BA7 12.27%, #0C127F 40.14%, #46074D 61%, #9C0E4A 79.41%);
+    }
+    .bottom-gradient-one:before{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.65) 61.18%, rgba(0, 0, 0, 0) 100%), linear-gradient(104.72deg, #1932F7 15.27%, #0821D5 46.64%, #810A61 100%);
+    }
+    .bottom-gradient-two:before{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.65) 61.18%, rgba(0, 0, 0, 0) 100%), linear-gradient(101.78deg, #040521 15.35%, #0A1885 39.84%, #0F16AE 75.72%, #B60A5A 99.28%);
+    }
+    .bottom-gradient-three:before{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.65) 68.1%, rgba(0, 0, 0, 0) 100%), linear-gradient(99.76deg, #040521 13.25%, #251491 31.89%, #3520F7 71.07%, #230C64 96.92%);
+    }
+    .left-gradient-one:before{
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(269.69deg, #000000 0.28%, rgba(0, 0, 0, 0.65) 83.18%, rgba(0, 0, 0, 0) 99.76%), linear-gradient(192.27deg, #2942FF 16.24%, #0821D5 46.63%, #490772 67.66%, #760C6B 85.79%, #B60A5A 98.31%);
+    }
+    .left-gradient-two:before{
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(269.69deg, #000000 0.28%, #000000 31.37%, #000000 67.19%, #25021C 84.51%, rgba(0, 0, 0, 0) 97.16%), linear-gradient(192.67deg, #130210 18.35%, #0F147C 30.21%, #1E16AB 59.18%, #140B44 88.14%, #0B092C 100%);
+    }
+    .left-gradient-three:before{
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(209.04deg, rgba(0, 0, 0, 0.2) 17.85%, rgba(0, 0, 0, 0.101662) 60.7%, rgba(244, 0, 103, 0.2) 88.73%), linear-gradient(270.17deg, #000000 1.48%, #000000 86.94%, rgba(44, 5, 11, 0.26) 99.85%), linear-gradient(134.42deg, #000000 0%, #001494 15.83%, #10106D 39.32%, #B60A5A 71.05%);
+    }
 
     @media (min-width: 768px){ 
         .border-color {
