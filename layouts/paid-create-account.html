@@ -126,7 +126,7 @@
           <!-- hade nav -->
           <nav class="flex items-center justify-between">
             <div class="">
-              <a :href="showbuybar ? 'paid-trial.html' : 'javascript:;'" href="javascript:;" class="p-2 block">
+              <a :href="showbuybar ? 'open-studio.html' : 'javascript:;'" href="javascript:;" class="p-2 block">
                 <i class="fa-thin fa-chevron-left text-[#D3D3D3] transition-all text-1xl group-hover:right-4"></i>
               </a>
             </div>
@@ -159,11 +159,15 @@
                 <!-- Slides Container -->
                 <div class="relative">
                   <div x-show="currentSlide == 1" class="w-full h-full" :class="currentSlide == 1 ? 'z-10' : ''" x-transition:enter="transition ease-out duration-1000" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:enter-start="opacity-0 transform translate-x-[100%]" x-transition:leave="transition ease-in " x-transition:leave-start="opacity-100 transform" x-transition:leave-end="transform">
-                    <div class="" x-data="{ flag1Obj: { first_name : false, phone_no : false, email_address : false, password : false, term_agreement : false } }">
+                    <div class="" x-data="{ flag1Obj: { first_name : false, last_name : false, phone_no : false, email_address : false, password : false, term_agreement : false } }">
                       <h2 class="text-md md:text-lg md:text-xl mb-3 md:mb-5 tracking-normal">Create Account</h2>
                       <div class="mb-4 w-full">
                         <label class="label-title">First Name</label>
                         <input type="text" class="form-control first_name" name="first_name" @keypress="flag1Obj.first_name = validateData( $event )" @keyup="flag1Obj.first_name = validateData( $event )" required >
+                      </div>
+                      <div class="mb-4 w-full">
+                        <label class="label-title">Last Name</label>
+                        <input type="text" class="form-control last_name" name="last_name" @keypress="flag1Obj.last_name = validateData( $event )" @keyup="flag1Obj.last_name = validateData( $event )" required >
                       </div>
                       <div class="mb-4 w-full">
                         <label class="label-title">Phone Number</label>
@@ -208,7 +212,7 @@
                       </div>
                       <div class="mb-4 w-full">
                         <label class="label-title">Expiration Date (MM/YYYY)</label>
-                        <input type="date" class="form-control expiry_date" name="expiry_date" @keypress="flag2Obj.expiry_date = validateData( $event )" x-on:input.change="flag2Obj.expiry_date = validateData( $event )"  @keyup="flag2Obj.expiry_date = validateData( $event )" required >
+                        <input type="month" class="form-control expiry_date" name="expiry_date" @keypress="flag2Obj.expiry_date = validateData( $event )" x-on:input.change="flag2Obj.expiry_date = validateData( $event )"  @keyup="flag2Obj.expiry_date = validateData( $event )" required >
                       </div>
                       <div class="mb-4 w-full">
                         <label class="label-title">3-digit Security Code</label>
