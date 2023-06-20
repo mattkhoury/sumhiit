@@ -254,6 +254,9 @@
         opacity: 0.7;
         filter: blur(42px);
     }
+    .form-buyone-form{
+        background-size: 240%;
+    }
     .office-locater-one-address{
         @apply text-black
     }

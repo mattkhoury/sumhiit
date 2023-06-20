@@ -227,16 +227,16 @@
     <!-- End inner banner -->
 
     <!-- Start CROWS NEST section -->
-    <section x-init="storeData = await (await fetch('json/location.json')).json()" x-data="getStores()" id="coming-studio" class="bg-cover pb-0 md:pb-20 pt-0 bg-black">
+    <section x-init="storeData = await (await fetch('json/location.json')).json()" x-data="getStores()" id="coming-studio" class="bg-cover pb-0 md:pb-20 pt-8 bg-black">
       <!-- container -->
-      <div class="container relative z-2 -mt-16">
-        <div class="flex flex-wrap md:flex-nowrap -mx-4 ">
+      <div class="container relative z-2">
+        <div class="flex flex-wrap md:flex-nowrap md:-mx-4 ">
           <!-- columns -->
-          <div class="w-full md:w-1/2 lg:w-7/12 md:px-4 lg:pr-20 relative">
+          <div class="w-full md:w-1/2 lg:w-1/2 md:px-4 lg:pr-20 relative">
 
-            <div class="-mt-24 md:max-w-[580px] grand-opening-box relative z-1">
+            <div class="md:max-w-[580px] relative z-1">
 
-              <div class="py-10 md:pb-0 md:pt-16 pr-4 md:pr-5 px-4 md:px-0 bg-black bg-box relative before:bg-black before:absolute before:h-full before:w-[500%] before:top-0 before:left-0 before:-ml-[500%]">
+              <div class="py-10 md:pb-0 md:pt-0 pr-4 md:pr-5 px-4 md:px-0 bg-black bg-box relative">
                 <h1 class="text-2xl md:text-3xl leading-2xl md:leading-3xl md:flex flex-wrap gap-x-5 mb-5 md:mb-7 tracking-normal">CROWS NEST <span class="text-dark-500 text-1xl block normal-case tracking-normal">Sydney</span></h1>
                 <p class="text-md">One of Australia’s biggest and best cities is now home to an equally amazing fitness studio. Come tour our clean, modern space and get started today.</p>
 
@@ -259,21 +259,21 @@
               </div>
             </div>
             <!-- columns -->
-            <div class="w-full md:w-1/2 lg:w-5/12 md:px-4">
-              <div id="studio-promo-form" class="bg-white px-5 md:px-6 lg:px-9 py-8 lg:py-12 md:-mt-5 relative z-2">
+            <div class="w-full md:w-1/2 lg:w-1/2 md:px-4">
+              <div id="studio-promo-form" class="form-buyone-form bg-black mb-10 md:mb-0 px-5 md:px-6 lg:px-14 pt-20 md:pt-24 pb-8 md:pb-12 relative z-2 bg-top border-8 border-primary-900" style="background-image: url('./assets/images/membership-gb-img-form.png');">
                 <div class="form-container">
-                  <div class="absolute -top-4 left-2/4 whitespace-nowrap -translate-x-2/4 bg-pink-900 py-0.5 px-8 uppercase font-semibold text-md">LIMITED OFFER</div>
-                  <div class="text-black mb-8 md:mb-10">
-                    <h2 class="text-1xl md:text-2xl leading-1xl md:leading-2xl mb-3 text-black normal-case font-inter font-bold tracking-normal">Buy 1 Class, Get 7 Days of Unlimited Classes</h2>
-                    <p>Get a taste of this game-changing workout by purchasing one class for $34.99 and unlocking 7 days of unlimited Basecamp access for FREE. Create your account now to join the fitness revolution!</p>
+                  <div class="absolute top-0 left-10 md:left-[70px] whitespace-nowrap bg-primary-900 py-1.5 rounded-b-md px-5 uppercase font-semibold text-sm sm:text-md">LIMITED OFFER</div>
+                  <div class="text-black mb-8 md:mb-14">
+                    <h2 class="text-1xl lg:text-[40px] leading-1xl lg:leading-4xl mb-3 text-white normal-case font-medium tracking-normal">BUY ONE. GET SEVEN.</h2>
+                    <p class="text-[#B0B0B0] text-[17px] leading-normal">For a limited time, purchase one Basecamp Fitness class for $34.99 to unlock a full week of unlimited access. Try as many different classes as you can to get a taste of this game-changing workout.</p>
                   </div>
-                  <div class="w-full relative bg-black relative bg-cover bg-no-repeat bg-top p-4" style="background-image: url('./assets/images/membership-gb-img.png');">
-                    <div class="studio-membership-detail bg-black border-8 border-primary-900 grid content-start py-8 px-5 text-center relative">
+                  <div class="w-full relative bg-black relative py-6 sm:py-8 px-3 sm:px-5 border border-[#646464]">
+                    <div class="studio-membership-detail bg-black grid content-start text-center relative">
                       <div>
-                        <h3 class="text-xl mb-4 font-medium">7-Day Trial</h3>
-                        <p class="mb-8">Unlimited for $35</p>
+                        <h3 class="text-lg sm:text-xl mb-3 font-medium">7-DAY TRIAL</h3>
+                        <p class="text-md leading-normal mb-5 md:mb-8">$34.99 for 7 days unlimited.</p>
                       </div>
-                      <a href="paid-create-account.html" class="btn-primary w-full px-3 xl:px-10 btn-secondary">Purchase Trial</a>
+                      <a href="paid-create-account.html" class="btn-primary text-primary-900 uppercase w-full px-3 py-3 sm:py-4 rounded-[4px] xl:px-10 btn-secondary">Purchase Trial</a>
                     </div>
                   </div>
               </div>
